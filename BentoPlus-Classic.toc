@@ -1,0 +1,28 @@
+## Interface: 11503
+## Title: Bento Plus Classic
+## Notes: Simple and efficient enhancements to user experience.
+## Version: 1.0
+## Author: MIYANKO
+
+Modules/ActionBars.lua
+Modules/Auras.lua
+Modules/Bags.lua
+Modules/CastingBar.lua
+Modules/Chat.lua
+Modules/ComboPoints.lua
+Modules/Commands.lua
+Modules/Compatibility.lua
+Modules/Config.lua
+Modules/Dialogs.lua
+Modules/ExhaustionTimers.lua
+Modules/Intro.lua
+Modules/Items.lua
+Modules/Map.lua
+Modules/Menu.lua
+Modules/MiniMap.lua
+Modules/NamePlates.lua
+Modules/Player.lua
+Modules/Sound.lua
+Modules/Target.lua
+Modules/Tooltips.lua
+Modules/TrackingBars.lua
