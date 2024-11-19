@@ -3,7 +3,7 @@
 local KeywordTable = {}
 
 local function KeywordMatch(msg, playerName)
-    local playerLink = "|Hplayer:" .. playerName .. "|h|cffFFFF00[" .. playerName .. "]: |r|h"
+    local playerLink = "|Hplayer:" .. playerName .. "|h|cFFFFD500[" .. playerName .. "]: |r|h"
     print(playerLink .. msg)
     PlaySound(3175, "Master", true)
 end
@@ -48,7 +48,7 @@ SLASH_FILTER1 = "/f"
 SlashCmdList["FILTER"] = function(msg)
     if msg == "" then
         wipe(KeywordTable)
-        print("|cFFFFFF00Filter:|r Cleared.")
+        print("|cFFFFD500Filter:|r Cleared.")
         FilterEvents:UnregisterEvent("CHAT_MSG_CHANNEL")
     else
         if not FilterEvents:IsEventRegistered("CHAT_MSG_CHANNEL") then
@@ -75,16 +75,16 @@ SlashCmdList["FILTER"] = function(msg)
         local newKeywordsStr = ""
         for i, keywordSet in ipairs(KeywordTable) do
             if type(keywordSet) == "string" then
-                newKeywordsStr = newKeywordsStr .. "|cffFFFDE7\"" .. keywordSet .. "\"|r"
+                newKeywordsStr = newKeywordsStr .. "\"" .. keywordSet .. "\""
             elseif type(keywordSet) == "table" then
                 local compoundStr = table.concat(keywordSet, " + ")
-                newKeywordsStr = newKeywordsStr .. "|cffFFFDE7\"" .. compoundStr .. "\"|r"
+                newKeywordsStr = newKeywordsStr .. "\"" .. compoundStr .. "\""
             end
             if i ~= #KeywordTable then
                 newKeywordsStr = newKeywordsStr .. ", "
             end
         end
-        print("|cFFFFFF00Filtering: " .. newKeywordsStr:gsub('"', '') .. ".|r")
+        print("|cFFFFD500Filtering:|r " .. newKeywordsStr:gsub('"', '') .. ".")
     end
 end
 
@@ -230,57 +230,49 @@ end
 
 
 
+-- Toggle Lua errors on or off
 
--- Enable /q command to leave the current party or raid
-
-SLASH_QUIT1 = "/q"
-SlashCmdList["QUIT"] = function()
-    LeaveParty()
-end
-
-
-
-
--- Enable /lua command to toggle the display of LUA errors
-
-SLASH_LUAERROR1 = "/lua"
-SlashCmdList["LUAERROR"] = function()
-    if GetCVar("scriptErrors") == "0" then
-        SetCVar("scriptErrors", "1")
-        print("|cFFFFFF00LUA Errors:|r Enabled")
+local function ToggleLuaErrors()
+    local currentSetting = GetCVar("scriptErrors")
+    if currentSetting == "1" then
+        SetCVar("scriptErrors", 0)
+        print("LUA Errors Off")
     else
-        SetCVar("scriptErrors", "0")
-        print("|cFFFFFF00LUA Errors:|r Disabled")
+        SetCVar("scriptErrors", 1)
+        print("LUA Errors On")
     end
 end
 
+SLASH_TOGGLELUA1 = "/lua"
+SlashCmdList["TOGGLELUA"] = ToggleLuaErrors
 
 
+-- Command to reload the UI
 
--- Enable /ui command to reload the user interface
+local function CustomReloadUI()
+    ReloadUI()
+end
 
 SLASH_RELOADUI1 = "/ui"
-SlashCmdList["RELOADUI"] = function()
+SlashCmdList["RELOADUI"] = CustomReloadUI
+
+
+-- Command to restart graphics engine
+
+local function CustomGXRestart()
+    ConsoleExec("gxRestart")
+end
+
+SLASH_GXRESTART1 = "/gx"
+SlashCmdList["GXRESTART"] = CustomGXRestart
+
+
+-- Command to reload the UI and restart graphics engine
+
+local function CustomReloadAndRestart()
+    ConsoleExec("gxRestart")
     ReloadUI()
 end
-
-
-
-
--- Enable /gx command to restart the graphics engine
-
-SLASH_RESTARTGX1 = "/gx"
-SlashCmdList["RESTARTGX"] = function()
-    RestartGx()
-end
-
-
-
-
--- Enable /rl command to reload the user interface and restart the graphics engine
 
 SLASH_RELOADANDRESTART1 = "/rl"
-SlashCmdList["RELOADANDRESTART"] = function()
-    ReloadUI()
-    RestartGx()
-end
+SlashCmdList["RELOADANDRESTART"] = CustomReloadAndRestart
