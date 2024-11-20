@@ -116,12 +116,13 @@ MinimapBFEvents:RegisterEvent("UPDATE_BATTLEFIELD_STATUS")
 MinimapBFEvents:RegisterEvent("UPDATE_ACTIVE_BATTLEFIELD")
 MinimapBFEvents:SetScript("OnEvent", MinimapBFUpdate)
 
+
 local function MinimapLFGUpdate()
     LFGMinimapFrameBorder:Hide()
     LFGMinimapFrame:SetParent(Minimap)
     LFGMinimapFrame:ClearAllPoints()
     LFGMinimapFrame:SetSize(40, 40)
-    LFGMinimapFrame:SetPoint("BOTTOMLEFT", Minimap, "BOTTOMLEFT", -4, 2)
+    LFGMinimapFrame:SetPoint("TOP", TimeManagerClockButton, "BOTTOM", 0, 8)
     LFGMinimapFrameIcon:SetSize(36, 36)
     LFGMinimapFrameIcon:SetPoint("CENTER", LFGMinimapFrame, "CENTER", 0, 0)
 end
@@ -129,6 +130,10 @@ end
 local MinimapLFGEvents = CreateFrame("Frame")
 MinimapLFGEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
 MinimapLFGEvents:SetScript("OnEvent", MinimapLFGUpdate)
+
+
+
+
 
 local MinimapTrackingBackdrop = CreateFrame("Frame", nil, MiniMapTracking, "BackdropTemplate")
 MinimapTrackingBackdrop:SetPoint("TOPLEFT", MiniMapTracking, "TOPLEFT", -4, 4)
