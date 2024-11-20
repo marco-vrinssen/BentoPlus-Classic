@@ -21,8 +21,10 @@ end
 
 -- Function to fade out the world map based on player movement
 local function FadeOutMap()
-    local targetAlpha = IsPlayerMoving() and 0.25 or 1
-    UIFrameFadeOut(WorldMapFrame, 0.25, WorldMapFrame:GetAlpha(), targetAlpha)
+    if WorldMapFrame:IsShown() then
+        local targetAlpha = IsPlayerMoving() and 0.25 or 1
+        UIFrameFadeOut(WorldMapFrame, 0.25, WorldMapFrame:GetAlpha(), targetAlpha)
+    end
 end
 
 -- Event handler function
