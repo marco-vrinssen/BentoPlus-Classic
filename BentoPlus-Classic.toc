@@ -17,12 +17,12 @@ Modules/Dialogs.lua
 Modules/ExhaustionTimers.lua
 Modules/Intro.lua
 Modules/Items.lua
-Modules/Map.lua
 Modules/Menu.lua
 Modules/MiniMap.lua
 Modules/NamePlates.lua
-Modules/Player.lua
+Modules/PlayerFrame.lua
 Modules/Sound.lua
-Modules/Target.lua
+Modules/TargetFrame.lua
 Modules/Tooltips.lua
 Modules/TrackingBars.lua
+Modules/WorldMap.lua
