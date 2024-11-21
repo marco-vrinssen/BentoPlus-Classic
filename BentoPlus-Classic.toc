@@ -5,8 +5,8 @@
 ## Author: MIYANKO
 
 Modules/ActionBars.lua
-Modules/Auras.lua
 Modules/Bags.lua
+Modules/BuffFrame.lua
 Modules/CastingBar.lua
 Modules/Chat.lua
 Modules/ComboPoints.lua
