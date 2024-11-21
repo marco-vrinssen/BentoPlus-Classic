@@ -1,58 +1,47 @@
--- Speed up auto looting and hide the LootFrame during the process
-
-local function FasterLooting()
+-- Function to speed up auto looting while hiding the loot frame during the looting
+local function UpdateAutoLoot()
     if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
-        local ItemsTotal = GetNumLootItems()
-        if ItemsTotal > 0 then
+        local NumItems = GetNumLootItems()
+        if NumItems > 0 then
             LootFrame:Hide()
-            for ItemCount = 1, ItemsTotal do
-                LootSlot(ItemCount)
+            for CurrentItem = NumItems, 1, -1 do
+                LootSlot(CurrentItem)
             end
         end
-            LootFrame:Hide()
     end
 end
 
 local LootEvents = CreateFrame("Frame")
 LootEvents:RegisterEvent("LOOT_READY")
-LootEvents:SetScript("OnEvent", FasterLooting)
-
-
-
+LootEvents:SetScript("OnEvent", UpdateAutoLoot)
 
 
 -- Automatically sells grey items and repairs gear when visiting a merchant
 
-local function AutoSellRepair()
-    local RepairCost, TotalSold = 0, 0
-    local CanMerchantRepair, RepairAllItems, GetRepairAllCost = CanMerchantRepair, RepairAllItems, GetRepairAllCost
-    local GetContainerNumSlots, GetContainerItemLink, UseContainerItem = C_Container.GetContainerNumSlots, C_Container.GetContainerItemLink, C_Container.UseContainerItem
-    local GetItemInfo = GetItemInfo
-
+local function RepairItems()
     if CanMerchantRepair() then
-        RepairCost = GetRepairAllCost()
-        if RepairCost > 0 then
-            RepairAllItems()
-            print("|cFFFFFF00Gear repaired for:|r " .. GetCoinTextureString(RepairCost))
-        end
+        RepairAllItems()
     end
+end
 
-    for BagIndex = 0, 4 do
-        for SlotIndex = 1, GetContainerNumSlots(BagIndex) do
-            local ItemLink = GetContainerItemLink(BagIndex, SlotIndex)
+local function SellGreyItems()
+    for NumBags = 0, 4 do
+        for NumSlots = 1, C_Container.GetContainerNumSlots(NumBags) do
+            local ItemLink = C_Container.GetContainerItemLink(NumBags, NumSlots)
             if ItemLink then
-                local _, _, ItemRarity, _, _, _, _, _, _, _, ItemSellPrice = GetItemInfo(ItemLink)
-                if ItemRarity == 0 and ItemSellPrice ~= 0 then
-                    TotalSold = TotalSold + ItemSellPrice
-                    UseContainerItem(BagIndex, SlotIndex)
+                local _, _, ItemRarity = GetItemInfo(ItemLink)
+                if ItemRarity == 0 then
+                    C_Container.UseContainerItem(NumBags, NumSlots)
                 end
             end
         end
     end
+end
 
-    if TotalSold > 0 then
-        print("|cFFFFFF00Grey items sold for:|r " .. GetCoinTextureString(TotalSold))
-    end
+local function AutoSellRepair()
+    RepairItems()
+    SellGreyItems()
+    C_Timer.After(0, SellGreyItems)
 end
 
 local MerchantEvents = CreateFrame("Frame")
