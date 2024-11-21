@@ -118,13 +118,17 @@ MinimapBFEvents:SetScript("OnEvent", MinimapBFUpdate)
 
 
 local function MinimapLFGUpdate()
-    LFGMinimapFrameBorder:Hide()
-    LFGMinimapFrame:SetParent(Minimap)
-    LFGMinimapFrame:ClearAllPoints()
-    LFGMinimapFrame:SetSize(40, 40)
-    LFGMinimapFrame:SetPoint("TOP", TimeManagerClockButton, "BOTTOM", 0, 8)
-    LFGMinimapFrameIcon:SetSize(36, 36)
-    LFGMinimapFrameIcon:SetPoint("CENTER", LFGMinimapFrame, "CENTER", 0, 0)
+    if LFGMinimapFrame then
+        if LFGMinimapFrameBorder then
+            LFGMinimapFrameBorder:Hide()
+        end
+        LFGMinimapFrame:SetParent(Minimap)
+        LFGMinimapFrame:ClearAllPoints()
+        LFGMinimapFrame:SetSize(40, 40)
+        LFGMinimapFrame:SetPoint("TOP", TimeManagerClockButton, "BOTTOM", 0, 8)
+        LFGMinimapFrameIcon:SetSize(36, 36)
+        LFGMinimapFrameIcon:SetPoint("CENTER", LFGMinimapFrame, "CENTER", 0, 0)
+    end
 end
 
 local MinimapLFGEvents = CreateFrame("Frame")
