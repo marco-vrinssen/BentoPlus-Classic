@@ -85,8 +85,6 @@ local function TargetFrameUpdate()
     TargetFrameManaBar:SetStatusBarTexture("Interface/RaidFrame/Raid-Bar-HP-Fill.blp")
 end
 
-hooksecurefunc("TargetFrame_Update", TargetFrameUpdate)
-
 local TargetFrameEvents = CreateFrame("Frame")
 TargetFrameEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
 TargetFrameEvents:RegisterEvent("PLAYER_TARGET_CHANGED")
