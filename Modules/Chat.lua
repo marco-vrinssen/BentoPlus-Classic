@@ -1,32 +1,36 @@
 -- Update position and appearance of chat frames
 
-local function HideChatElement(element)
+-- Hide a UI element and prevent it from being shown again
+local function HideUIElement(element)
     if element then
         element:Hide()
         element:SetScript("OnShow", element.Hide)
     end
 end
 
-local function HideChildElements(parentFrame, elementNames)
-    for _, elementName in ipairs(elementNames) do
-        local childElement = _G[parentFrame:GetName() .. elementName] or parentFrame[elementName]
-        HideChatElement(childElement)
+-- Hide specified child elements of a parent frame
+local function HideChildUIElements(parentFrame, childElementNames)
+    for _, childName in ipairs(childElementNames) do
+        local childElement = _G[parentFrame:GetName() .. childName] or parentFrame[childName]
+        HideUIElement(childElement)
     end
 end
 
-local function HideTextureRegions(parentFrame)
-    for _, region in ipairs({parentFrame:GetRegions()}) do
+-- Hide all texture regions of a frame
+local function HideFrameTextures(frame)
+    for _, region in ipairs({frame:GetRegions()}) do
         if region:IsObjectType("Texture") then
-            HideChatElement(region)
+            HideUIElement(region)
         end
     end
 end
 
-local function CustomizeChatTab(chatTabFrame)
-    local chatTab = _G[chatTabFrame:GetName() .. "Tab"]
-    local chatTabText = _G[chatTabFrame:GetName() .. "TabText"]
+-- Customize the appearance of a chat tab
+local function CustomizeChatTab(chatFrame)
+    local chatTab = _G[chatFrame:GetName() .. "Tab"]
+    local chatTabText = _G[chatFrame:GetName() .. "TabText"]
     
-    HideTextureRegions(chatTab)
+    HideFrameTextures(chatTab)
     if chatTabText then
         chatTabText:SetFont(STANDARD_TEXT_FONT, 14)
         chatTabText:ClearAllPoints()
@@ -34,8 +38,9 @@ local function CustomizeChatTab(chatTabFrame)
     end
 end
 
+-- Customize the appearance of a chat frame
 local function CustomizeChatFrame(chatFrame)
-    HideTextureRegions(chatFrame)
+    HideFrameTextures(chatFrame)
     
     local elementsToHide = {
         "ButtonFrame", "EditBoxLeft", "EditBoxMid", "EditBoxRight",
@@ -43,11 +48,12 @@ local function CustomizeChatFrame(chatFrame)
         "TabBottomButton", "TabMinimizeButton"
     }
     
-    HideChildElements(chatFrame, elementsToHide)
+    HideChildUIElements(chatFrame, elementsToHide)
     CustomizeChatTab(chatFrame)
 end
 
-local function AlignEditBoxHeader()
+-- Align the header of the edit box for all chat frames
+local function AlignEditBoxHeaders()
     for i = 1, NUM_CHAT_WINDOWS do
         local editBox = _G["ChatFrame" .. i .. "EditBox"]
         local editBoxHeader = _G["ChatFrame" .. i .. "EditBoxHeader"]
@@ -58,49 +64,57 @@ local function AlignEditBoxHeader()
     end
 end
 
+-- Update all chat frames to apply customizations
 local function UpdateAllChatFrames()
     for i = 1, NUM_CHAT_WINDOWS do
         CustomizeChatFrame(_G["ChatFrame" .. i])
     end
     
-    HideChatElement(ChatFrameMenuButton)
-    HideChatElement(ChatFrameChannelButton)
+    HideUIElement(ChatFrameMenuButton)
+    HideUIElement(ChatFrameChannelButton)
     if CombatLogQuickButtonFrame_Custom then
         CombatLogQuickButtonFrame_Custom:SetAlpha(0)
     end
     
-    AlignEditBoxHeader()
+    AlignEditBoxHeaders()
 end
 
-local function ChatScrollHook(chatFrameID)
-    local chatFrameTab = _G["ChatFrame" .. chatFrameID .. "Tab"]
-    if not chatFrameTab.scrollHooked then
-        chatFrameTab:HookScript("OnClick", function() _G["ChatFrame" .. chatFrameID]:ScrollToBottom() end)
-        chatFrameTab.scrollHooked = true
+-- Hook chat tab click to scroll to bottom
+local function HookChatTabScroll(chatFrameID)
+    local chatTab = _G["ChatFrame" .. chatFrameID .. "Tab"]
+    if not chatTab.scrollHooked then
+        chatTab:HookScript("OnClick", function() _G["ChatFrame" .. chatFrameID]:ScrollToBottom() end)
+        chatTab.scrollHooked = true
     end
 end
 
-local function UpdateChatScroll()
+-- Update scroll behavior for all chat frames
+local function UpdateChatScrollBehavior()
     for i = 1, NUM_CHAT_WINDOWS do
-        ChatScrollHook(i)
+        HookChatTabScroll(i)
     end
 end
 
+-- Event handler for updating chat frames and scroll behavior
+local function OnChatEvent()
+    UpdateAllChatFrames()
+    UpdateChatScrollBehavior()
+end
+
+-- Register events for updating chat frames
 local chatEvents = CreateFrame("Frame")
 chatEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
 chatEvents:RegisterEvent("UPDATE_FLOATING_CHAT_WINDOWS")
 chatEvents:RegisterEvent("CHAT_MSG_WHISPER")
 chatEvents:RegisterEvent("UI_SCALE_CHANGED")
-chatEvents:SetScript("OnEvent", function()
-    UpdateAllChatFrames()
-    UpdateChatScroll()
-end)
+chatEvents:SetScript("OnEvent", OnChatEvent)
 
+-- Hook function to customize temporary chat windows
 hooksecurefunc("FCF_OpenTemporaryWindow", function()
     local currentChatFrame = FCF_GetCurrentChatFrame()
     if currentChatFrame then
         CustomizeChatFrame(currentChatFrame)
-        ChatScrollHook(currentChatFrame:GetID())
-        AlignEditBoxHeader()
+        HookChatTabScroll(currentChatFrame:GetID())
+        AlignEditBoxHeaders()
     end
 end)
