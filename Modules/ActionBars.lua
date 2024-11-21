@@ -85,8 +85,8 @@ hooksecurefunc("ActionButton_OnUpdate", ActionButtonUpdate)
 local function PetBarUpdate()
     local PreviousPetButton
 
-    for i = 1, 10 do
-        local PetButton = _G["PetActionButton" .. i]
+    for numStances = 1, 10 do
+        local PetButton = _G["PetActionButton" .. numStances]
         PetButton:ClearAllPoints()
 
         if not PreviousPetButton then
@@ -111,34 +111,51 @@ PetBarEvents:SetScript("OnEvent", PetBarUpdate)
 
 
 
-
--- Update appearance and position of class bar
-
 local function ClassBarUpdate()
     local PreviousClassButton
+    local anchorButton = MultiBarBottomLeftButton1:IsShown() and MultiBarBottomLeftButton1 or ActionButton1
 
-    for i = 1, NUM_STANCE_SLOTS do
-        local ClassButton = _G["StanceButton" .. i]
+    for numStances = 1, NUM_STANCE_SLOTS do
+        local ClassButton = _G["StanceButton" .. numStances]
         
         ClassButton:ClearAllPoints()
 
         if not PreviousClassButton then
-            ClassButton:SetPoint("BOTTOMLEFT", MultiBarBottomLeft, "TOPLEFT", 0, 8)
+            ClassButton:SetPoint("BOTTOMLEFT", anchorButton, "TOPLEFT", 0, 8)
         else
             ClassButton:SetPoint("LEFT", PreviousClassButton, "RIGHT", 4, 0)
         end
 
-        ClassButton:SetScale(0.8)
-        ClassButton:SetAlpha(0.5)
+        -- Hide all normal textures for the stance button
+        for numTextures = 1, 3 do  -- Assuming a maximum of 10 normal textures per stance button
+            local NormalTexture = _G["StanceButton" .. numStances .. "NormalTexture" .. numTextures]
+            if NormalTexture then
+                NormalTexture:SetAlpha(0)
+                NormalTexture:SetTexture(nil)
+
+            end
+        end
 
         PreviousClassButton = ClassButton
     end
 
-    PossessBarFrame:UnregisterAllEvents()
+    -- Set the StanceBarFrame alpha to 0 and texture to nil
+    StanceBarLeft:SetAlpha(0)
+    StanceBarLeft:SetTexture(nil)
+
+    
+    StanceBarMiddle:SetAlpha(0)
+    StanceBarMiddle:SetTexture(nil)
+
+    
+    StanceBarRight:SetAlpha(0)
+    StanceBarRight:SetTexture(nil)
+
 end
 
 local ClassBarEvents = CreateFrame("Frame")
 ClassBarEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
+ClassBarEvents:RegisterEvent("UPDATE_STEALTH")
 ClassBarEvents:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
 ClassBarEvents:RegisterEvent("UPDATE_SHAPESHIFT_USABLE")
 ClassBarEvents:RegisterEvent("UPDATE_SHAPESHIFT_COOLDOWN")
