@@ -7,7 +7,7 @@ local function UpdateAutoLoot()
             for CurrentItem = NumItems, 1, -1 do
                 LootSlot(CurrentItem)
             end
-            LootFrame:Show() -- Re-show the LootFrame after looting
+            LootFrame:Show()
         end
     end
 end
