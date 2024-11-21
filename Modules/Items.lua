@@ -2,11 +2,12 @@
 local function UpdateAutoLoot()
     if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
         local NumItems = GetNumLootItems()
-        if NumItems > 0 then
+        if NumItems and NumItems > 0 then
             LootFrame:Hide()
             for CurrentItem = NumItems, 1, -1 do
                 LootSlot(CurrentItem)
             end
+            LootFrame:Show() -- Re-show the LootFrame after looting
         end
     end
 end
