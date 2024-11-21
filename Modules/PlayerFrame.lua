@@ -27,7 +27,6 @@ PlayerPortraitBackdrop:SetAttribute("type2", "togglemenu")
 
 
 
-
 local function PlayerFrameUpdate()
     PlayerFrame:ClearAllPoints()
     PlayerFrame:SetPoint("TOPLEFT", PlayerPortraitBackdrop, "TOPLEFT", 0, 0)
@@ -46,7 +45,8 @@ local function PlayerFrameUpdate()
     PlayerAttackIcon:SetTexture(nil)
     PlayerRestGlow:SetTexture(nil)
     PlayerRestIcon:SetTexture(nil)
-    PlayerPVPIcon:SetAlpha(0)
+    PlayerPVPIcon:SetTexture(nil)
+    
     PlayerPVPTimerText:Hide()
 
     PlayerName:ClearAllPoints()
@@ -62,7 +62,11 @@ local function PlayerFrameUpdate()
     PlayerFrameManaBar:ClearAllPoints()
     PlayerFrameManaBar:SetPoint("BOTTOM", PlayerFrameBackdrop, "BOTTOM", 0, 4)
     PlayerFrameManaBar:SetSize(PlayerFrameBackground:GetWidth(), 8)
-    PlayerFrameManaBar:SetStatusBarTexture("Interface/RaidFrame/Raid-Bar-HP-Fill.blp")
+
+    local function UpdateManaBarTexture()
+        PlayerFrameManaBar:SetStatusBarTexture("Interface/RaidFrame/Raid-Bar-HP-Fill.blp")
+    end
+    C_Timer.After(0.1, UpdateManaBarTexture)
 
     PlayerFrameHealthBarText:SetPoint("CENTER", PlayerFrameHealthBar, "CENTER", 0, 0)
     PlayerFrameHealthBarText:SetFont(STANDARD_TEXT_FONT, 12, "OUTLINE")
@@ -79,7 +83,14 @@ local function PlayerFrameUpdate()
     PlayerFrameManaBarTextRight:SetFont(STANDARD_TEXT_FONT, 8, "OUTLINE")
 end
 
-hooksecurefunc("PlayerFrame_Update", PlayerFrameUpdate)
+local PlayerFrameEvents = CreateFrame("Frame")
+PlayerFrameEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
+PlayerFrameEvents:RegisterEvent("PLAYER_REGEN_DISABLED")
+PlayerFrameEvents:RegisterEvent("PLAYER_REGEN_ENABLED")
+PlayerFrameEvents:RegisterEvent("UNIT_POWER_UPDATE")
+PlayerFrameEvents:RegisterEvent("UNIT_DISPLAYPOWER")
+PlayerFrameEvents:RegisterEvent("UPDATE_EXHAUSTION")
+PlayerFrameEvents:SetScript("OnEvent", PlayerFrameUpdate)
 
 local PlayerFrameEvents = CreateFrame("Frame")
 PlayerFrameEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
