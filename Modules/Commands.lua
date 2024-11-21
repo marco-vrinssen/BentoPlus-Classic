@@ -93,6 +93,7 @@ SlashCmdList["FILTER"] = function(msg)
     end
 end
 
+
 -- Enable /bc MESSAGE and /bc N1-N2 MESSAGE commands to broadcast messages across all channels
 
 SLASH_BROADCAST1 = "/bc"
