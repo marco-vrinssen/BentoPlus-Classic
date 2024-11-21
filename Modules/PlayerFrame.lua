@@ -46,7 +46,6 @@ local function PlayerFrameUpdate()
     PlayerRestGlow:SetTexture(nil)
     PlayerRestIcon:SetTexture(nil)
     PlayerPVPIcon:SetTexture(nil)
-    
     PlayerPVPTimerText:Hide()
 
     PlayerName:ClearAllPoints()
@@ -66,7 +65,7 @@ local function PlayerFrameUpdate()
     local function UpdateManaBarTexture()
         PlayerFrameManaBar:SetStatusBarTexture("Interface/RaidFrame/Raid-Bar-HP-Fill.blp")
     end
-    C_Timer.After(0.1, UpdateManaBarTexture)
+    C_Timer.After(0, UpdateManaBarTexture)
 
     PlayerFrameHealthBarText:SetPoint("CENTER", PlayerFrameHealthBar, "CENTER", 0, 0)
     PlayerFrameHealthBarText:SetFont(STANDARD_TEXT_FONT, 12, "OUTLINE")
