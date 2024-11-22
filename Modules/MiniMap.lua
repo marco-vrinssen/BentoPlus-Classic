@@ -117,27 +117,6 @@ MinimapBFEvents:RegisterEvent("UPDATE_ACTIVE_BATTLEFIELD")
 MinimapBFEvents:SetScript("OnEvent", MinimapBFUpdate)
 
 
-local function MinimapLFGUpdate()
-    if LFGMinimapFrame then
-        if LFGMinimapFrameBorder then
-            LFGMinimapFrameBorder:Hide()
-        end
-        LFGMinimapFrame:SetParent(Minimap)
-        LFGMinimapFrame:ClearAllPoints()
-        LFGMinimapFrame:SetSize(40, 40)
-        LFGMinimapFrame:SetPoint("TOP", TimeManagerClockButton, "BOTTOM", 0, 8)
-        LFGMinimapFrameIcon:SetSize(36, 36)
-        LFGMinimapFrameIcon:SetPoint("CENTER", LFGMinimapFrame, "CENTER", 0, 0)
-    end
-end
-
-local MinimapLFGEvents = CreateFrame("Frame")
-MinimapLFGEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
-MinimapLFGEvents:SetScript("OnEvent", MinimapLFGUpdate)
-
-
-
-
 
 local MinimapTrackingBackdrop = CreateFrame("Frame", nil, MiniMapTracking, "BackdropTemplate")
 MinimapTrackingBackdrop:SetPoint("TOPLEFT", MiniMapTracking, "TOPLEFT", -4, 4)
@@ -167,53 +146,4 @@ local MinimapTrackingEvents = CreateFrame("Frame")
 MinimapTrackingEvents:RegisterEvent("MINIMAP_UPDATE_TRACKING")
 MinimapTrackingEvents:SetScript("OnEvent", function()
     C_Timer.After(1, MinimapTrackingUpdate)
-end)
-
-local function AddonButtonUpdate()
-    local LibDBIcon = _G.LibStub and _G.LibStub("LibDBIcon-1.0", true)
-    if not LibDBIcon then return end
-
-    for name, AddonButton in pairs(LibDBIcon.objects) do
-        if AddonButton:IsShown() then
-            for i = 1, AddonButton:GetNumRegions() do
-                local ButtonRegion = select(i, AddonButton:GetRegions())
-                if ButtonRegion:IsObjectType("Texture") and ButtonRegion ~= AddonButton.icon then
-                    ButtonRegion:Hide()
-                end
-            end
-
-            AddonButton:SetSize(16, 16)
-            AddonButton:SetParent(Minimap)
-            AddonButton:SetFrameLevel(Minimap:GetFrameLevel() + 1)
-            AddonButton.icon:ClearAllPoints()
-            AddonButton.icon:SetPoint("CENTER", AddonButton, "CENTER", 0, 0)
-            AddonButton.icon:SetSize(14, 14)
-
-            if not AddonButton.background then
-                AddonButton.background = CreateFrame("Frame", nil, AddonButton, BackdropTemplateMixin and "BackdropTemplate")
-                AddonButton.background:SetPoint("TOPLEFT", AddonButton, "TOPLEFT", -4, 4)
-                AddonButton.background:SetPoint("BOTTOMRIGHT", AddonButton, "BOTTOMRIGHT", 4, -4)
-                AddonButton.background:SetBackdrop({
-                    bgFile = "Interface/ChatFrame/ChatFrameBackground", -- Commented out to prevent black screen
-                    edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
-                    tile = false, tileSize = 16, edgeSize = 12,
-                    insets = {left = 2, right = 2, top = 2, bottom = 2}
-                })
-                AddonButton.background:SetBackdropColor(0, 0, 0, 1)
-                AddonButton.background:SetBackdropBorderColor(0.5, 0.5, 0.5, 1)
-                AddonButton.background:SetFrameLevel(AddonButton:GetFrameLevel() - 1)
-            end
-        end
-    end
-end
-
-local AddonButtonEvents = CreateFrame("Frame")
-AddonButtonEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
-AddonButtonEvents:RegisterEvent("ADDON_LOADED")
-AddonButtonEvents:SetScript("OnEvent", function(self, event)
-    if event == "ADDON_LOADED" then
-        C_Timer.After(0, AddonButtonUpdate)
-    elseif event == "PLAYER_ENTERING_WORLD" then
-        C_Timer.After(0, AddonButtonUpdate)
-    end
 end)
