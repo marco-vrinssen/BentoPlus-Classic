@@ -1,12 +1,7 @@
-local function HideStatusBar()
-    GameTooltipStatusBar:Hide()
-end
-
-local function UpdateTooltipPosition(tooltip)
+local function UpdateTooltip(tooltip)
     if tooltip:GetAnchorType() ~= "ANCHOR_CURSOR" then
         tooltip:ClearAllPoints()
-        tooltip:SetPoint("TOPLEFT", TargetFramePortrait, "BOTTOMRIGHT", 8, -8)
-
+        tooltip:SetPoint("TOPLEFT", TargetFramePortrait, "BOTTOMRIGHT", 4, -4)
         GameTooltipStatusBar:ClearAllPoints()
         GameTooltipStatusBar:SetPoint("TOP", tooltip, "BOTTOM", 0, 4)
         GameTooltipStatusBar:SetStatusBarTexture("Interface/RaidFrame/Raid-Bar-HP-Fill.blp")
@@ -14,6 +9,6 @@ local function UpdateTooltipPosition(tooltip)
     end
 end
 
-hooksecurefunc("GameTooltip_SetDefaultAnchor", UpdateTooltipPosition)
-GameTooltip:HookScript("OnTooltipSetUnit", UpdateTooltipPosition)
-GameTooltip:HookScript("OnSizeChanged", HideStatusBar)
+hooksecurefunc("GameTooltip_SetDefaultAnchor", UpdateTooltip)
+GameTooltip:HookScript("OnTooltipSetUnit", UpdateTooltip)
+GameTooltip:HookScript("OnSizeChanged", function() GameTooltipStatusBar:Hide() end)
