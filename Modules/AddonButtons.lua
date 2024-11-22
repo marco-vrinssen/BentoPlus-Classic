@@ -49,9 +49,7 @@ local AddonButtonEvents = CreateFrame("Frame")
 AddonButtonEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
 AddonButtonEvents:RegisterEvent("ADDON_LOADED")
 AddonButtonEvents:SetScript("OnEvent", function(self, event)
-    if event == "ADDON_LOADED" then
-        C_Timer.After(0, AddonButtonUpdate)
-    elseif event == "PLAYER_ENTERING_WORLD" then
+    if event == "ADDON_LOADED" or event == "PLAYER_ENTERING_WORLD" then
         C_Timer.After(0, AddonButtonUpdate)
     end
 end)
