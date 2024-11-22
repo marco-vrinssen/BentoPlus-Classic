@@ -12,7 +12,6 @@ Modules/CastingBar.lua
 Modules/Chat.lua
 Modules/ComboPoints.lua
 Modules/Commands.lua
-Modules/Compatibility.lua
 Modules/Config.lua
 Modules/Dialogs.lua
 Modules/ExhaustionTimers.lua
@@ -24,6 +23,7 @@ Modules/MicroMenu.lua
 Modules/MiniMap.lua
 Modules/NamePlates.lua
 Modules/PlayerFrame.lua
+Modules/Questie.lua
 Modules/Sound.lua
 Modules/TargetFrame.lua
 Modules/Tooltips.lua
