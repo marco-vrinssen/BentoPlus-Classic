@@ -5,6 +5,7 @@
 ## Author: MIYANKO
 
 Modules/ActionBars.lua
+Modules/AddonButtons.lua
 Modules/Bags.lua
 Modules/BuffFrame.lua
 Modules/CastingBar.lua
@@ -15,9 +16,11 @@ Modules/Compatibility.lua
 Modules/Config.lua
 Modules/Dialogs.lua
 Modules/ExhaustionTimers.lua
+Modules/FrameRateDisplay.lua
 Modules/Intro.lua
 Modules/Items.lua
-Modules/Menu.lua
+Modules/LFG.lua
+Modules/MicroMenu.lua
 Modules/MiniMap.lua
 Modules/NamePlates.lua
 Modules/PlayerFrame.lua
