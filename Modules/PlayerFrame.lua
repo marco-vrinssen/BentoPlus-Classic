@@ -45,10 +45,13 @@ local function PlayerFrameUpdate()
     PlayerAttackIcon:SetTexture(nil)
     PlayerRestGlow:SetTexture(nil)
     PlayerRestIcon:SetTexture(nil)
-    PlayerPVPIcon:SetTexture(nil)
     PlayerPVPIconHitArea:Hide()
     PlayerPVPTimerText:Hide()
 
+    PlayerPVPIcon:SetTexture(nil)
+    PlayerPVPIcon:SetScript("OnShow", function(self) self:Hide() end)
+
+    
     PlayerName:ClearAllPoints()
     PlayerName:SetPoint("TOP", PlayerFrameBackdrop, "TOP", 0, -5)
     PlayerName:SetFont(STANDARD_TEXT_FONT, 12)
