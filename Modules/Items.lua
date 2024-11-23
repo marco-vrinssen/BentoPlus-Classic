@@ -1,13 +1,9 @@
 -- Function to speed up auto looting while hiding the loot frame during the looting
-local function UpdateAutoLoot()
+local function UpdateAutoLoot(self, event)
     if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
         local NumItems = GetNumLootItems()
-        if NumItems and NumItems > 0 then
-            LootFrame:Hide()
-            for CurrentItem = NumItems, 1, -1 do
-                LootSlot(CurrentItem)
-            end
-            LootFrame:Show()
+        for CurrentItem = NumItems, 1, -1 do
+            LootSlot(CurrentItem)
         end
     end
 end
