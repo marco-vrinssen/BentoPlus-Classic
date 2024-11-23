@@ -19,7 +19,6 @@ Modules/FrameRateDisplay.lua
 Modules/Intro.lua
 Modules/Items.lua
 Modules/LFG.lua
-Modules/Links.lua
 Modules/MicroMenu.lua
 Modules/MiniMap.lua
 Modules/NamePlates.lua
