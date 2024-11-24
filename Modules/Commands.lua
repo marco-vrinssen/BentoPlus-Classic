@@ -1,15 +1,11 @@
--- Enable /f KEYWORD command to filter for KEYWORDS across all channels
-
 local KeywordTable = {}
 
--- Function to handle keyword match and notify the player
 local function KeywordMatch(msg, playerName)
     local playerLink = "|Hplayer:" .. playerName .. "|h|cFFFFD500[" .. playerName .. "]: |r|h"
     print(playerLink .. msg)
     PlaySound(3175, "Master", true)
 end
 
--- Function to filter messages based on keywords
 local function KeywordFilter(msg)
     for _, keywordSet in ipairs(KeywordTable) do
         if type(keywordSet) == "string" then
@@ -34,7 +30,6 @@ local function KeywordFilter(msg)
     return false
 end
 
--- Function to validate messages and trigger keyword match
 local function KeywordValidation(self, event, msg, playerName, languageName, channelName, ...)
     if next(KeywordTable) and strmatch(channelName, "%d+") then
         local channelNumber = tonumber(strmatch(channelName, "%d+"))
@@ -44,11 +39,9 @@ local function KeywordValidation(self, event, msg, playerName, languageName, cha
     end
 end
 
--- Create a frame to handle chat events
 local FilterEvents = CreateFrame("Frame")
 FilterEvents:SetScript("OnEvent", KeywordValidation)
 
--- Slash command to set up keyword filtering
 SLASH_FILTER1 = "/f"
 SlashCmdList["FILTER"] = function(msg)
     if msg == "" then
@@ -93,9 +86,6 @@ SlashCmdList["FILTER"] = function(msg)
     end
 end
 
-
--- Enable /bc MESSAGE and /bc N1-N2 MESSAGE commands to broadcast messages across all channels
-
 SLASH_BROADCAST1 = "/bc"
 SlashCmdList["BROADCAST"] = function(msg)
     local startChannel, endChannel, message = msg:match("^(%d+)%-(%d+)%s+(.+)$")
@@ -113,13 +103,10 @@ SlashCmdList["BROADCAST"] = function(msg)
     end
 end
 
--- Enable /ww MESSAGE, /ww N MESSAGE, /ww -CLASS MESSAGE, and /ww N -CLASS MESSAGE commands to whisper players in a /who instance
-
 SLASH_WHISPERWHO1 = "/ww"
 SlashCmdList["WHISPERWHO"] = function(msg)
     local limit, classExclusion, message
 
-    -- Parse the command arguments
     limit, classExclusion, message = msg:match("^(%d+)%s*-%s*(%w+)%s+(.+)$")
     if not limit then
         limit, message = msg:match("^(%d+)%s+(.+)$")
@@ -163,8 +150,6 @@ SlashCmdList["WHISPERWHO"] = function(msg)
     end
 end
 
--- Enable /wl N MESSAGE command to whisper the last N players who whispered you
-
 local recentWhispers = {}
 
 SLASH_WHISPERLASTN1 = "/wl"
@@ -190,7 +175,6 @@ SlashCmdList["WHISPERLASTN"] = function(msg)
     end
 end
 
--- Function to track recent whispers
 local function TrackWhispers(_, _, msg, playerName)
     table.insert(recentWhispers, playerName)
     if #recentWhispers > 100 then
@@ -198,12 +182,9 @@ local function TrackWhispers(_, _, msg, playerName)
     end
 end
 
--- Create a frame to handle whisper events
 local WhisperLastEvents = CreateFrame("Frame")
 WhisperLastEvents:RegisterEvent("CHAT_MSG_WHISPER")
 WhisperLastEvents:SetScript("OnEvent", TrackWhispers)
-
--- Enable /c command to close all temporary chat tabs
 
 SLASH_CLOSETABS1 = "/c"
 SlashCmdList["CLOSETABS"] = function()
@@ -215,14 +196,10 @@ SlashCmdList["CLOSETABS"] = function()
     end
 end
 
--- Enable /rc command to perform a ready check
-
 SLASH_READYCHECK1 = "/rc"
 SlashCmdList["READYCHECK"] = function()
     DoReadyCheck()
 end
-
--- Toggle Lua errors on or off
 
 local function ToggleLuaErrors()
     local currentSetting = GetCVar("scriptErrors")
@@ -238,8 +215,6 @@ end
 SLASH_TOGGLELUA1 = "/lua"
 SlashCmdList["TOGGLELUA"] = ToggleLuaErrors
 
--- Command to reload the UI
-
 local function CustomReloadUI()
     ReloadUI()
 end
@@ -247,16 +222,12 @@ end
 SLASH_RELOADUI1 = "/ui"
 SlashCmdList["RELOADUI"] = CustomReloadUI
 
--- Command to restart graphics engine
-
 local function CustomGXRestart()
     ConsoleExec("gxRestart")
 end
 
 SLASH_GXRESTART1 = "/gx"
 SlashCmdList["GXRESTART"] = CustomGXRestart
-
--- Command to reload the UI and restart graphics engine
 
 local function CustomReloadAndRestart()
     ConsoleExec("gxRestart")

@@ -1,5 +1,3 @@
--- Update appearance and position of action bars and buttons
-
 local function ActionBarUpdate()
     MainMenuBar:SetWidth(512)
     MainMenuBar:ClearAllPoints()
@@ -57,11 +55,6 @@ local ActionBarEvents = CreateFrame("Frame")
 ActionBarEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
 ActionBarEvents:SetScript("OnEvent", ActionBarUpdate)
 
-
-
-
--- Update button color based on range and usability
-
 function ActionButtonUpdate(self)
     if self.action then
         local ActionRange = IsActionInRange(self.action)
@@ -76,11 +69,6 @@ function ActionButtonUpdate(self)
 end
 
 hooksecurefunc("ActionButton_OnUpdate", ActionButtonUpdate)
-
-
-
-
--- Update appearance and position of pet bar
 
 local function PetBarUpdate()
     local PreviousPetButton
@@ -109,8 +97,6 @@ PetBarEvents:RegisterEvent("UNIT_PET")
 PetBarEvents:RegisterEvent("PET_BAR_UPDATE")
 PetBarEvents:SetScript("OnEvent", PetBarUpdate)
 
-
-
 local function ClassBarUpdate()
     local PreviousClassButton
     local anchorButton = MultiBarBottomLeftButton1:IsShown() and MultiBarBottomLeftButton1 or ActionButton1
@@ -126,31 +112,23 @@ local function ClassBarUpdate()
             ClassButton:SetPoint("LEFT", PreviousClassButton, "RIGHT", 4, 0)
         end
 
-        -- Hide all normal textures for the stance button
-        for numTextures = 1, 3 do  -- Assuming a maximum of 10 normal textures per stance button
+        for numTextures = 1, 3 do
             local NormalTexture = _G["StanceButton" .. numStances .. "NormalTexture" .. numTextures]
             if NormalTexture then
                 NormalTexture:SetAlpha(0)
                 NormalTexture:SetTexture(nil)
-
             end
         end
 
         PreviousClassButton = ClassButton
     end
 
-    -- Set the StanceBarFrame alpha to 0 and texture to nil
     StanceBarLeft:SetAlpha(0)
     StanceBarLeft:SetTexture(nil)
-
-    
     StanceBarMiddle:SetAlpha(0)
     StanceBarMiddle:SetTexture(nil)
-
-    
     StanceBarRight:SetAlpha(0)
     StanceBarRight:SetTexture(nil)
-
 end
 
 local ClassBarEvents = CreateFrame("Frame")
@@ -160,10 +138,6 @@ ClassBarEvents:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
 ClassBarEvents:RegisterEvent("UPDATE_SHAPESHIFT_USABLE")
 ClassBarEvents:RegisterEvent("UPDATE_SHAPESHIFT_COOLDOWN")
 ClassBarEvents:SetScript("OnEvent", ClassBarUpdate)
-
-
-
--- Update appearance and position of vehicle button
 
 local function VehicleButtonUpdate()
     MainMenuBarVehicleLeaveButton:SetSize(32, 32)

@@ -1,6 +1,3 @@
--- Update position and appearance of chat frames
-
--- Hide a UI element and prevent it from being shown again
 local function HideUIElement(element)
     if element then
         element:Hide()
@@ -8,7 +5,6 @@ local function HideUIElement(element)
     end
 end
 
--- Hide specified child elements of a parent frame
 local function HideChildUIElements(parentFrame, childElementNames)
     for _, childName in ipairs(childElementNames) do
         local childElement = _G[parentFrame:GetName() .. childName] or parentFrame[childName]
@@ -16,7 +12,6 @@ local function HideChildUIElements(parentFrame, childElementNames)
     end
 end
 
--- Hide all texture regions of a frame
 local function HideFrameTextures(frame)
     for _, region in ipairs({frame:GetRegions()}) do
         if region:IsObjectType("Texture") then
@@ -25,7 +20,6 @@ local function HideFrameTextures(frame)
     end
 end
 
--- Customize the appearance of a chat tab
 local function CustomizeChatTab(chatFrame)
     local chatTab = _G[chatFrame:GetName() .. "Tab"]
     local chatTabText = _G[chatFrame:GetName() .. "TabText"]
@@ -38,7 +32,6 @@ local function CustomizeChatTab(chatFrame)
     end
 end
 
--- Customize the appearance of a chat frame
 local function CustomizeChatFrame(chatFrame)
     HideFrameTextures(chatFrame)
     
@@ -52,7 +45,6 @@ local function CustomizeChatFrame(chatFrame)
     CustomizeChatTab(chatFrame)
 end
 
--- Align the header of the edit box for all chat frames
 local function AlignEditBoxHeaders()
     for i = 1, NUM_CHAT_WINDOWS do
         local editBox = _G["ChatFrame" .. i .. "EditBox"]
@@ -64,7 +56,6 @@ local function AlignEditBoxHeaders()
     end
 end
 
--- Update all chat frames to apply customizations
 local function UpdateAllChatFrames()
     for i = 1, NUM_CHAT_WINDOWS do
         CustomizeChatFrame(_G["ChatFrame" .. i])
@@ -79,7 +70,6 @@ local function UpdateAllChatFrames()
     AlignEditBoxHeaders()
 end
 
--- Hook chat tab click to scroll to bottom
 local function HookChatTabScroll(chatFrameID)
     local chatTab = _G["ChatFrame" .. chatFrameID .. "Tab"]
     if not chatTab.scrollHooked then
@@ -88,20 +78,17 @@ local function HookChatTabScroll(chatFrameID)
     end
 end
 
--- Update scroll behavior for all chat frames
 local function UpdateChatScrollBehavior()
     for i = 1, NUM_CHAT_WINDOWS do
         HookChatTabScroll(i)
     end
 end
 
--- Event handler for updating chat frames and scroll behavior
 local function OnChatEvent()
     UpdateAllChatFrames()
     UpdateChatScrollBehavior()
 end
 
--- Register events for updating chat frames
 local chatEvents = CreateFrame("Frame")
 chatEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
 chatEvents:RegisterEvent("UPDATE_FLOATING_CHAT_WINDOWS")
@@ -109,7 +96,6 @@ chatEvents:RegisterEvent("CHAT_MSG_WHISPER")
 chatEvents:RegisterEvent("UI_SCALE_CHANGED")
 chatEvents:SetScript("OnEvent", OnChatEvent)
 
--- Hook function to customize temporary chat windows
 hooksecurefunc("FCF_OpenTemporaryWindow", function()
     local currentChatFrame = FCF_GetCurrentChatFrame()
     if currentChatFrame then

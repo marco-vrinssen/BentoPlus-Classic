@@ -1,4 +1,3 @@
--- Function to speed up auto looting while hiding the loot frame during the looting
 local function UpdateAutoLoot(self, event)
     if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
         local NumItems = GetNumLootItems()
@@ -11,9 +10,6 @@ end
 local LootEvents = CreateFrame("Frame")
 LootEvents:RegisterEvent("LOOT_READY")
 LootEvents:SetScript("OnEvent", UpdateAutoLoot)
-
-
--- Automatically sells grey items and repairs gear when visiting a merchant
 
 local function RepairItems()
     if CanMerchantRepair() then

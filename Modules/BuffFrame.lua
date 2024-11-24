@@ -1,5 +1,3 @@
--- Update position of player buff frame
-
 local function PlayerAurasUpdate()
     BuffFrame:ClearAllPoints()
     BuffFrame:SetPoint("TOPRIGHT", Minimap, "TOPLEFT", -40, 0)

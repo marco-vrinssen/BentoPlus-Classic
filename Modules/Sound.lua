@@ -1,5 +1,3 @@
--- Mute bow, gun, and Mechastrider mount sounds
-
 local function SoundUpdate()
     local soundIDsToMute = {
         555124, -- Mechastrider Loop

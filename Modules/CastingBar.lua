@@ -1,5 +1,3 @@
--- Update position and appearance of the castbar
-
 local CastBarBackdrop = CreateFrame("Frame", nil, CastingBarFrame, "BackdropTemplate")
 CastBarBackdrop:SetPoint("TOPLEFT", CastingBarFrame, "TOPLEFT", -3, 2)
 CastBarBackdrop:SetPoint("BOTTOMRIGHT", CastingBarFrame, "BOTTOMRIGHT", 3, -2)

@@ -1,5 +1,3 @@
--- Automatic item related dialog handling
-
 local function DialogUpdate(_, event, ...)
     if event == "CONFIRM_LOOT_ROLL" then
         ConfirmLootRoll(...)

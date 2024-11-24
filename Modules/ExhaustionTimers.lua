@@ -1,5 +1,3 @@
--- Update position of exhaustion timer bars
-
 local function ExhaustionTimerBackdrop(ExhaustionTimer)
     if not _G[ExhaustionTimer.."CustomBackdrop"] then
         local ExhaustionTimerBackdrop = CreateFrame("Frame", ExhaustionTimer.."CustomBackdrop", _G[ExhaustionTimer.."StatusBar"], "BackdropTemplate")

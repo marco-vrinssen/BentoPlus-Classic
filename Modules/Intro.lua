@@ -1,5 +1,3 @@
--- Intro message and command to check out available commands
-
 local function CommandsIntro()
     print("/bentocmd for available commands.")
 end

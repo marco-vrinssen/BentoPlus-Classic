@@ -1,5 +1,3 @@
--- Update appearance of nameplates
-
 local function NameplateUpdate(Nameplate, unitID)
     local UnitNameplate = Nameplate and Nameplate.UnitFrame
     if not UnitNameplate then return end
@@ -74,9 +72,6 @@ NameplateEvents:SetScript("OnEvent", function(self, event, unitID)
         NameplateUpdate(Nameplate, unitID)
     end
 end)
-
-
-
 
 local function NameplateCastbarSetup(Nameplate)
     local HealthbarReference = Nameplate.UnitFrame.healthBar
@@ -167,9 +162,6 @@ NameplateCastbarEvents:SetScript("OnEvent", function(self, event, unitID)
         NameplateCastbarUpdate(Nameplate.NameplateCastbar, unitID)
     end
 end)
-
-
-
 
 local function NameplateConfigUpdate()
     SetCVar("nameplateMinScale", 0.8)

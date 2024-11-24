@@ -1,5 +1,3 @@
--- Add Questie support
-
 local function QuestieSupport()
     if IsAddOnLoaded("Questie") then
         Questie.db.profile.nameplateTargetFrameScale = 1.5

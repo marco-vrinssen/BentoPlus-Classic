@@ -95,15 +95,6 @@ PlayerFrameEvents:RegisterEvent("UNIT_DISPLAYPOWER")
 PlayerFrameEvents:RegisterEvent("UPDATE_EXHAUSTION")
 PlayerFrameEvents:SetScript("OnEvent", PlayerFrameUpdate)
 
-local PlayerFrameEvents = CreateFrame("Frame")
-PlayerFrameEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
-PlayerFrameEvents:RegisterEvent("PLAYER_REGEN_DISABLED")
-PlayerFrameEvents:RegisterEvent("PLAYER_REGEN_ENABLED")
-PlayerFrameEvents:RegisterEvent("UNIT_POWER_UPDATE")
-PlayerFrameEvents:RegisterEvent("UNIT_DISPLAYPOWER")
-PlayerFrameEvents:RegisterEvent("UPDATE_EXHAUSTION")
-PlayerFrameEvents:SetScript("OnEvent", PlayerFrameUpdate)
-
 
 
 

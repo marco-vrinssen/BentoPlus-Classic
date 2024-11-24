@@ -1,5 +1,3 @@
--- Update graphics, world text scale and max camera distance configurations
-
 local function ConfigUpdate()
     SetCVar("ffxGlow", 0)
     SetCVar("ffxDeath", 0)

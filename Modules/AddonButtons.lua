@@ -8,7 +8,6 @@ local function AddonButtonUpdate()
     end
     table.sort(buttons, function(a, b) return a.name < b.name end)
 
-    local previousButton
     for _, data in ipairs(buttons) do
         local AddonButton = data.button
         if AddonButton:IsShown() then
@@ -32,7 +31,7 @@ local function AddonButtonUpdate()
                 AddonButton.background:SetPoint("TOPLEFT", AddonButton, "TOPLEFT", -4, 4)
                 AddonButton.background:SetPoint("BOTTOMRIGHT", AddonButton, "BOTTOMRIGHT", 4, -4)
                 AddonButton.background:SetBackdrop({
-                    bgFile = "Interface/ChatFrame/ChatFrameBackground", -- Commented out to prevent black screen
+                    bgFile = "Interface/ChatFrame/ChatFrameBackground",
                     edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
                     tile = false, tileSize = 16, edgeSize = 12,
                     insets = {left = 2, right = 2, top = 2, bottom = 2}

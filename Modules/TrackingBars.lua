@@ -1,42 +1,45 @@
--- Function to hide the experience bar
+--- Hides the specified bar and its textures.
+-- @param bar The bar to hide.
+-- @param textures A table of textures to hide.
+local function HideBar(bar, textures)
+    bar:Hide()
+    for _, texture in ipairs(textures) do
+        texture:Hide()
+    end
+end
+
+--- Hides the experience bar and its textures.
 local function ExperienceBarHide()
-    MainMenuExpBar:Hide()
+    HideBar(MainMenuExpBar, {
+        MainMenuXPBarTexture0,
+        MainMenuXPBarTexture1,
+        MainMenuXPBarTexture2,
+        MainMenuXPBarTexture3
+    })
     MainMenuExpBar:SetAlpha(0)
-    MainMenuXPBarTexture0:Hide()
-    MainMenuXPBarTexture1:Hide()
-    MainMenuXPBarTexture2:Hide()
-    MainMenuXPBarTexture3:Hide()
 end
 
--- Hook the experience bar hide function to the OnShow event
-MainMenuExpBar:HookScript("OnShow", ExperienceBarHide)
-
--- Create a frame to handle experience bar related events
-local ExperienceBarEvents = CreateFrame("Frame")
-ExperienceBarEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
-ExperienceBarEvents:RegisterEvent("PLAYER_LEVEL_UP")
-ExperienceBarEvents:RegisterEvent("PLAYER_XP_UPDATE")
-ExperienceBarEvents:RegisterEvent("UPDATE_EXHAUSTION")
-ExperienceBarEvents:SetScript("OnEvent", ExperienceBarHide)
-
-
-
-
--- Function to hide the reputation bar
+--- Hides the reputation bar and its textures.
 local function ReputationBarHide()
-    ReputationWatchBar.StatusBar:Hide()
+    HideBar(ReputationWatchBar.StatusBar, {
+        ReputationWatchBar.StatusBar.WatchBarTexture0,
+        ReputationWatchBar.StatusBar.WatchBarTexture1,
+        ReputationWatchBar.StatusBar.WatchBarTexture2,
+        ReputationWatchBar.StatusBar.WatchBarTexture3
+    })
     ReputationWatchBar.OverlayFrame:Hide()
-    ReputationWatchBar.StatusBar.WatchBarTexture0:Hide()
-    ReputationWatchBar.StatusBar.WatchBarTexture1:Hide()
-    ReputationWatchBar.StatusBar.WatchBarTexture2:Hide()
-    ReputationWatchBar.StatusBar.WatchBarTexture3:Hide()
 end
 
--- Hook the reputation bar hide function to the OnShow event
+MainMenuExpBar:HookScript("OnShow", ExperienceBarHide)
 ReputationWatchBar.StatusBar:HookScript("OnShow", ReputationBarHide)
 
--- Create a frame to handle reputation bar related events
-local ReputationBarEvents = CreateFrame("Frame")
-ReputationBarEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
-ReputationBarEvents:RegisterEvent("UPDATE_FACTION")
-ReputationBarEvents:SetScript("OnEvent", ReputationBarHide)
+local BarEvents = CreateFrame("Frame")
+BarEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
+BarEvents:RegisterEvent("PLAYER_LEVEL_UP")
+BarEvents:RegisterEvent("PLAYER_XP_UPDATE")
+BarEvents:RegisterEvent("UPDATE_EXHAUSTION")
+BarEvents:RegisterEvent("UPDATE_FACTION")
+BarEvents:SetScript("OnEvent", function(self, event)
+    ExperienceBarHide()
+    ReputationBarHide()
+end)
