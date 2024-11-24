@@ -61,15 +61,12 @@ local function PlayerFrameUpdate()
     PlayerFrameHealthBar:SetSize(PlayerFrameBackground:GetWidth(), 16)
     PlayerFrameHealthBar:SetPoint("BOTTOM", PlayerFrameManaBar, "TOP", 0, 0)
     PlayerFrameHealthBar:SetStatusBarTexture("Interface/RaidFrame/Raid-Bar-HP-Fill.blp")
-
+    
     PlayerFrameManaBar:ClearAllPoints()
     PlayerFrameManaBar:SetPoint("BOTTOM", PlayerFrameBackdrop, "BOTTOM", 0, 4)
     PlayerFrameManaBar:SetSize(PlayerFrameBackground:GetWidth(), 8)
+    PlayerFrameManaBar:SetStatusBarTexture("Interface/RaidFrame/Raid-Bar-HP-Fill.blp")
 
-    local function UpdateManaBarTexture()
-        PlayerFrameManaBar:SetStatusBarTexture("Interface/RaidFrame/Raid-Bar-HP-Fill.blp")
-    end
-    C_Timer.After(0, UpdateManaBarTexture)
 
     PlayerFrameHealthBarText:SetPoint("CENTER", PlayerFrameHealthBar, "CENTER", 0, 0)
     PlayerFrameHealthBarText:SetFont(STANDARD_TEXT_FONT, 12, "OUTLINE")
