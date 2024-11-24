@@ -86,23 +86,6 @@ SlashCmdList["FILTER"] = function(msg)
     end
 end
 
-SLASH_BROADCAST1 = "/bc"
-SlashCmdList["BROADCAST"] = function(msg)
-    local startChannel, endChannel, message = msg:match("^(%d+)%-(%d+)%s+(.+)$")
-    startChannel, endChannel = tonumber(startChannel), tonumber(endChannel)
-
-    if startChannel and endChannel and message then
-        for i = startChannel, endChannel do
-            SendChatMessage(message, "CHANNEL", nil, i)
-        end
-    else
-        message = msg
-        for i = 1, 10 do
-            SendChatMessage(message, "CHANNEL", nil, i)
-        end
-    end
-end
-
 SLASH_WHISPERWHO1 = "/ww"
 SlashCmdList["WHISPERWHO"] = function(msg)
     local limit, classExclusion, message
