@@ -140,9 +140,9 @@ ClassBarEvents:RegisterEvent("UPDATE_SHAPESHIFT_COOLDOWN")
 ClassBarEvents:SetScript("OnEvent", ClassBarUpdate)
 
 local function VehicleButtonUpdate()
-    MainMenuBarVehicleLeaveButton:SetSize(32, 32)
+    MainMenuBarVehicleLeaveButton:SetSize(24, 24)
     MainMenuBarVehicleLeaveButton:ClearAllPoints()
-    MainMenuBarVehicleLeaveButton:SetPoint("BOTTOM", CastingBarFrame, "BOTTOM", 0, 0)
+    MainMenuBarVehicleLeaveButton:SetPoint("BOTTOMRIGHT", CastingBarFrame, "TOPRIGHT", 0, 0)
 end
 
 MainMenuBarVehicleLeaveButton:HookScript("OnShow", VehicleButtonUpdate)
