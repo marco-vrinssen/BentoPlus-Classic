@@ -77,7 +77,7 @@ local function MinimapMailUpdate()
     MiniMapMailFrame:SetSize(16, 16)
     MiniMapMailFrame:SetPoint("RIGHT", MinimapTimeBackdrop, "LEFT", -4, 0)
     MiniMapMailIcon:ClearAllPoints()
-    MiniMapMailIcon:SetSize(17, 17)
+    MiniMapMailIcon:SetSize(18, 18)
     MiniMapMailIcon:SetPoint("CENTER", MiniMapMailFrame, "CENTER", 0, 0)
 end
 
