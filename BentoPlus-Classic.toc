@@ -6,6 +6,7 @@
 
 Modules/ActionBars.lua
 Modules/AddonButtons.lua
+Modules/Auctionator.lua
 Modules/Bags.lua
 Modules/BuffFrame.lua
 Modules/CastingBar.lua
