@@ -1,5 +1,4 @@
 local function UpdateWorldMapFrame()
-    C_Timer.After(0, function()
         WorldMapFrame:ClearAllPoints()
         WorldMapFrame:SetScale(0.75)
         WorldMapFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
@@ -10,7 +9,6 @@ local function UpdateWorldMapFrame()
             local width, height = MapCanvasScrollControllerMixin.GetCursorPosition()
             return width / 0.75, height / 0.75
         end
-    end)
 end
 
 WorldMapFrame:HookScript("OnUpdate", UpdateWorldMapFrame)
