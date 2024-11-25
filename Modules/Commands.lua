@@ -1,5 +1,8 @@
 local KeywordTable = {}
 
+
+
+-- Keyword Matching Functions
 local function KeywordMatch(msg, playerName)
     local playerLink = "|Hplayer:" .. playerName .. "|h|cFFFFD500[" .. playerName .. "]: |r|h"
     print(playerLink .. msg)
@@ -39,6 +42,9 @@ local function KeywordValidation(self, event, msg, playerName, languageName, cha
     end
 end
 
+
+
+-- Filter Events
 local FilterEvents = CreateFrame("Frame")
 FilterEvents:SetScript("OnEvent", KeywordValidation)
 
@@ -86,6 +92,9 @@ SlashCmdList["FILTER"] = function(msg)
     end
 end
 
+
+
+-- Whisper Who Command
 SLASH_WHISPERWHO1 = "/ww"
 SlashCmdList["WHISPERWHO"] = function(msg)
     local limit, classExclusion, message
@@ -133,6 +142,9 @@ SlashCmdList["WHISPERWHO"] = function(msg)
     end
 end
 
+
+
+-- Whisper Last N Command
 local recentWhispers = {}
 
 SLASH_WHISPERLASTN1 = "/wl"
@@ -169,6 +181,9 @@ local WhisperLastEvents = CreateFrame("Frame")
 WhisperLastEvents:RegisterEvent("CHAT_MSG_WHISPER")
 WhisperLastEvents:SetScript("OnEvent", TrackWhispers)
 
+
+
+-- Close Tabs Command
 SLASH_CLOSETABS1 = "/c"
 SlashCmdList["CLOSETABS"] = function()
     for _, chatFrameName in pairs(CHAT_FRAMES) do
@@ -179,11 +194,27 @@ SlashCmdList["CLOSETABS"] = function()
     end
 end
 
+
+
+-- Ready Check Command
 SLASH_READYCHECK1 = "/rc"
 SlashCmdList["READYCHECK"] = function()
     DoReadyCheck()
 end
 
+
+
+-- Quit Party Command
+SLASH_QUITPARTY1 = "/q"
+SlashCmdList["QUITPARTY"] = function()
+    if IsInGroup() then
+        LeaveParty()
+    end
+end
+
+
+
+-- Toggle Lua Errors Command
 local function ToggleLuaErrors()
     local currentSetting = GetCVar("scriptErrors")
     if currentSetting == "1" then
@@ -198,6 +229,9 @@ end
 SLASH_TOGGLELUA1 = "/lua"
 SlashCmdList["TOGGLELUA"] = ToggleLuaErrors
 
+
+
+-- Reload UI Command
 local function CustomReloadUI()
     ReloadUI()
 end
@@ -205,6 +239,9 @@ end
 SLASH_RELOADUI1 = "/ui"
 SlashCmdList["RELOADUI"] = CustomReloadUI
 
+
+
+-- GX Restart Command
 local function CustomGXRestart()
     ConsoleExec("gxRestart")
 end
@@ -212,6 +249,9 @@ end
 SLASH_GXRESTART1 = "/gx"
 SlashCmdList["GXRESTART"] = CustomGXRestart
 
+
+
+-- Reload and Restart Command
 local function CustomReloadAndRestart()
     ConsoleExec("gxRestart")
     ReloadUI()
