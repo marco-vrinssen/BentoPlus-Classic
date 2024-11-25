@@ -7,6 +7,8 @@
 Modules/ActionBars.lua
 Modules/AddonButtons.lua
 Modules/Auctionator.lua
+Modules/AutoDismount.lua
+Modules/AutoSellRepair.lua
 Modules/Bags.lua
 Modules/BuffFrame.lua
 Modules/CastingBar.lua
@@ -18,6 +20,8 @@ Modules/ExhaustionTimers.lua
 Modules/FrameRateDisplay.lua
 Modules/Intro.lua
 Modules/LFG.lua
+Modules/Loot.lua
+Modules/Mailbox.lua
 Modules/MicroMenu.lua
 Modules/MiniMap.lua
 Modules/NamePlates.lua
@@ -27,3 +31,4 @@ Modules/Sound.lua
 Modules/TargetFrame.lua
 Modules/Tooltips.lua
 Modules/TrackingBars.lua
+Modules/WorldMap.lua
