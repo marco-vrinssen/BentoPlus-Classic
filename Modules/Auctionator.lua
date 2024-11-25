@@ -15,15 +15,8 @@ local function AddScanButtonToAuctionFrame()
     end
 end
 
-local function ClickScanButton()
-    if AuctionatorConfigFrame and AuctionatorConfigFrame.ScanButton then
-        AuctionatorConfigFrame.ScanButton:Click()
-    end
-end
-
 local function OnAuctionHouseShow()
     AddScanButtonToAuctionFrame()
-    C_Timer.After(0.5, ClickScanButton)
 end
 
 local AuctionatorEvents = CreateFrame("Frame")
