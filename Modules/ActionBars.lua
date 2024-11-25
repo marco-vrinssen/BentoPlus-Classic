@@ -142,7 +142,7 @@ ClassBarEvents:SetScript("OnEvent", ClassBarUpdate)
 local function VehicleButtonUpdate()
     MainMenuBarVehicleLeaveButton:SetSize(24, 24)
     MainMenuBarVehicleLeaveButton:ClearAllPoints()
-    MainMenuBarVehicleLeaveButton:SetPoint("BOTTOMRIGHT", CastingBarFrame, "TOPRIGHT", 0, 0)
+    MainMenuBarVehicleLeaveButton:SetPoint("CENTER", UIParent, "CENTER", 0, -80)
 end
 
 MainMenuBarVehicleLeaveButton:HookScript("OnShow", VehicleButtonUpdate)
