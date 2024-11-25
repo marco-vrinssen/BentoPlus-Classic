@@ -14,11 +14,9 @@ Modules/Chat.lua
 Modules/ComboPoints.lua
 Modules/Commands.lua
 Modules/Config.lua
-Modules/Dialogs.lua
 Modules/ExhaustionTimers.lua
 Modules/FrameRateDisplay.lua
 Modules/Intro.lua
-Modules/Items.lua
 Modules/LFG.lua
 Modules/MicroMenu.lua
 Modules/MiniMap.lua
@@ -29,4 +27,3 @@ Modules/Sound.lua
 Modules/TargetFrame.lua
 Modules/Tooltips.lua
 Modules/TrackingBars.lua
-Modules/WorldMap.lua
