@@ -98,6 +98,7 @@ PetBarEvents:RegisterEvent("PET_BAR_UPDATE")
 PetBarEvents:SetScript("OnEvent", PetBarUpdate)
 
 local function ClassBarUpdate()
+    if InCombatLockdown() then return end
     local PreviousClassButton
     local anchorButton = MultiBarBottomLeftButton1:IsShown() and MultiBarBottomLeftButton1 or ActionButton1
 
@@ -137,7 +138,14 @@ ClassBarEvents:RegisterEvent("UPDATE_STEALTH")
 ClassBarEvents:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
 ClassBarEvents:RegisterEvent("UPDATE_SHAPESHIFT_USABLE")
 ClassBarEvents:RegisterEvent("UPDATE_SHAPESHIFT_COOLDOWN")
-ClassBarEvents:SetScript("OnEvent", ClassBarUpdate)
+ClassBarEvents:RegisterEvent("PLAYER_REGEN_ENABLED")
+ClassBarEvents:SetScript("OnEvent", function(self, event, ...)
+    if event == "PLAYER_REGEN_ENABLED" then
+        ClassBarUpdate()
+    else
+        ClassBarUpdate()
+    end
+end)
 
 local function VehicleButtonUpdate()
     MainMenuBarVehicleLeaveButton:SetSize(24, 24)
