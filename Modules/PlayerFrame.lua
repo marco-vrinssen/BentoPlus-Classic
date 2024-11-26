@@ -154,10 +154,10 @@ local function PlayerLevelUpdate()
     PlayerLevelText:SetFont(STANDARD_TEXT_FONT, 12, "OUTLINE")
     PlayerLevelText:SetTextColor(1, 1, 1, 1)
 
-    if UnitLevel("player") == 60 then
-        PlayerLevelText:Hide()
-    else
+    if UnitLevel("player") < MAX_PLAYER_LEVEL then
         PlayerLevelText:Show()
+    else
+        PlayerLevelText:Hide()
     end
 end
 
@@ -166,35 +166,6 @@ PlayerLevelEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
 PlayerLevelEvents:RegisterEvent("PLAYER_LEVEL_UP")
 PlayerLevelEvents:RegisterEvent("PLAYER_XP_UPDATE")
 PlayerLevelEvents:SetScript("OnEvent", PlayerLevelUpdate)
-
-
-
-
-local function PlayerLevelTooltip()
-    local CurrentExperience, MaxExperience = UnitXP("player"), UnitXPMax("player")
-    local RestedExperience = GetXPExhaustion() or 0
-
-    local ExperienceText = string.format(
-        "|cFFFFFFFFExperience|r\n\n" ..
-        "|cFFFFCC00Progress:|r |cFFFFFFFF%d%%|r\n" ..
-        "|cFFFFCC00Rested:|r |cFFFFFFFF%d%%|r\n" ..
-        "|cFFFFCC00Current:|r |cFFFFFFFF%d|r\n" ..
-        "|cFFFFCC00Missing:|r |cFFFFFFFF%d|r\n" ..
-        "|cFFFFCC00Total:|r |cFFFFFFFF%d|r",
-        math.floor((CurrentExperience / MaxExperience) * 100),
-        math.floor((RestedExperience / MaxExperience) * 100),
-        CurrentExperience,
-        MaxExperience - CurrentExperience,
-        MaxExperience
-    )
-
-    GameTooltip:SetOwner(PlayerLevelText, "ANCHOR_BOTTOMLEFT")
-    GameTooltip:SetText(ExperienceText, nil, nil, nil, nil, true)
-    GameTooltip:Show()
-end
-
-PlayerLevelText:SetScript("OnEnter", PlayerLevelTooltip)
-PlayerLevelText:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
 
 
