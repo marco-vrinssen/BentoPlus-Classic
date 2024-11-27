@@ -4,9 +4,8 @@ local function ConfigUpdate()
     SetCVar("ffxNether", 0)
 
     SetCVar("WorldTextScale", 1.25)
-    SetCVar("cameraDistanceMaxZoomFactor", 2.2)
-
-    SetCVar("rawMouseEnable", 1)
+    
+    SetCVar("cameraDistanceMaxZoomFactor", 2.6)
 end
 
 local ConfigEvents = CreateFrame("Frame")
