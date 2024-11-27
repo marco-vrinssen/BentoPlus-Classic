@@ -29,6 +29,7 @@ TargetPortraitBackdrop:SetAttribute("type2", "togglemenu")
 
 
 local function TargetFrameUpdate()
+    if InCombatLockdown() then return end
     TargetFrame:ClearAllPoints()
     TargetFrame:SetPoint("BOTTOMLEFT", TargetFrameBackdrop, "BOTTOMLEFT", 0, 0)
     TargetFrame:SetPoint("TOPRIGHT", TargetPortraitBackdrop, "TOPRIGHT", 0, 0)
@@ -120,6 +121,7 @@ TargetHealthEvents:SetScript("OnEvent", TargetHealthUpdate)
 
 
 local function TargetPortraitUpdate()
+    if InCombatLockdown() then return end
     TargetFramePortrait:ClearAllPoints()
     TargetFramePortrait:SetPoint("CENTER", TargetPortraitBackdrop, "CENTER", 0, 0)
     TargetFramePortrait:SetSize(TargetPortraitBackdrop:GetHeight() - 6, TargetPortraitBackdrop:GetHeight() - 6)
@@ -162,6 +164,7 @@ hooksecurefunc("UnitFramePortrait_Update", PortraitTextureUpdate)
 
 
 local function TargetGroupUpdate()
+    if InCombatLockdown() then return end
     TargetFrameTextureFrameLeaderIcon:ClearAllPoints()
     TargetFrameTextureFrameLeaderIcon:SetPoint("BOTTOM", TargetPortraitBackdrop, "TOP", 0, 0)
 end
@@ -177,6 +180,7 @@ hooksecurefunc("TargetFrame_Update", TargetGroupUpdate)
 
 
 local function TragetLevelUpdate()
+    if InCombatLockdown() then return end
     TargetFrameTextureFrameLevelText:ClearAllPoints()
     TargetFrameTextureFrameLevelText:SetPoint("TOP", TargetPortraitBackdrop, "BOTTOM", 0, -4)
     TargetFrameTextureFrameLevelText:SetFont(STANDARD_TEXT_FONT, 12, "OUTLINE")
@@ -213,6 +217,7 @@ ToTFrameBackdrop:SetAttribute("type1", "target")
 ToTFrameBackdrop:SetAttribute("type2", "togglemenu")
 
 local function ToTFrameUpdate()
+    if InCombatLockdown() then return end
     TargetFrameToT:ClearAllPoints()
     TargetFrameToT:SetPoint("CENTER", TargetFrameBackdrop, "CENTER", 0, 0)
 
@@ -263,6 +268,7 @@ ToTFrameEvents:SetScript("OnEvent", ToTFrameUpdate)
 
 
 local function TargetAurasUpdate()
+    if InCombatLockdown() then return end
     local InitialBuff = _G["TargetFrameBuff1"]
     if InitialBuff then
         InitialBuff:ClearAllPoints()
@@ -299,6 +305,7 @@ TargetSpellBarBackdrop:SetBackdropBorderColor(0.5, 0.5, 0.5, 1)
 TargetSpellBarBackdrop:SetFrameStrata("HIGH")
 
 local function TargetSpellBarUpdate()
+    if InCombatLockdown() then return end
     TargetFrameSpellBar:ClearAllPoints()
     TargetFrameSpellBar:SetPoint("TOPLEFT", TargetSpellBarBackdrop, "TOPLEFT", 3, -2)
     TargetFrameSpellBar:SetPoint("BOTTOMRIGHT", TargetSpellBarBackdrop, "BOTTOMRIGHT", -3, 2)
