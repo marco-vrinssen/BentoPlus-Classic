@@ -16,6 +16,7 @@ Modules/Chat.lua
 Modules/ComboPoints.lua
 Modules/Commands.lua
 Modules/Config.lua
+Modules/Dialogs.lua
 Modules/ExhaustionTimers.lua
 Modules/FrameRateDisplay.lua
 Modules/Intro.lua
