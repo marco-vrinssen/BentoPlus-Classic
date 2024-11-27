@@ -28,9 +28,6 @@ PlayerPortraitBackdrop:SetAttribute("type2", "togglemenu")
 
 
 local function PlayerFrameUpdate()
-    if InCombatLockdown() then
-        return
-    end
     PlayerFrame:ClearAllPoints()
     PlayerFrame:SetPoint("TOPLEFT", PlayerPortraitBackdrop, "TOPLEFT", 0, 0)
     PlayerFrame:SetPoint("BOTTOMRIGHT", PlayerFrameBackdrop, "BOTTOMRIGHT", 0, 0)
@@ -95,13 +92,9 @@ PlayerFrameEvents:SetScript("OnEvent", function(self, event, ...)
         self.inCombat = true
     elseif event == "PLAYER_REGEN_ENABLED" then
         self.inCombat = false
-        if not InCombatLockdown() then
-            PlayerFrameUpdate()
-        end
+        PlayerFrameUpdate()
     else
-        if not InCombatLockdown() then
-            PlayerFrameUpdate()
-        end
+        PlayerFrameUpdate()
     end
 end)
 
