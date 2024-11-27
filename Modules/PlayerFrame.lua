@@ -28,6 +28,9 @@ PlayerPortraitBackdrop:SetAttribute("type2", "togglemenu")
 
 
 local function PlayerFrameUpdate()
+    if InCombatLockdown() then
+        return
+    end
     PlayerFrame:ClearAllPoints()
     PlayerFrame:SetPoint("TOPLEFT", PlayerPortraitBackdrop, "TOPLEFT", 0, 0)
     PlayerFrame:SetPoint("BOTTOMRIGHT", PlayerFrameBackdrop, "BOTTOMRIGHT", 0, 0)
@@ -47,11 +50,8 @@ local function PlayerFrameUpdate()
     PlayerRestIcon:SetTexture(nil)
     PlayerPVPIconHitArea:Hide()
     PlayerPVPTimerText:Hide()
+    PlayerPVPIcon:SetAlpha(0)
 
-    PlayerPVPIcon:SetTexture(nil)
-    PlayerPVPIcon:SetScript("OnShow", function(self) self:Hide() end)
-
-    
     PlayerName:ClearAllPoints()
     PlayerName:SetPoint("TOP", PlayerFrameBackdrop, "TOP", 0, -5)
     PlayerName:SetFont(STANDARD_TEXT_FONT, 12)
@@ -90,7 +90,20 @@ PlayerFrameEvents:RegisterEvent("PLAYER_REGEN_ENABLED")
 PlayerFrameEvents:RegisterEvent("UNIT_POWER_UPDATE")
 PlayerFrameEvents:RegisterEvent("UNIT_DISPLAYPOWER")
 PlayerFrameEvents:RegisterEvent("UPDATE_EXHAUSTION")
-PlayerFrameEvents:SetScript("OnEvent", PlayerFrameUpdate)
+PlayerFrameEvents:SetScript("OnEvent", function(self, event, ...)
+    if event == "PLAYER_REGEN_DISABLED" then
+        self.inCombat = true
+    elseif event == "PLAYER_REGEN_ENABLED" then
+        self.inCombat = false
+        if not InCombatLockdown() then
+            PlayerFrameUpdate()
+        end
+    else
+        if not InCombatLockdown() then
+            PlayerFrameUpdate()
+        end
+    end
+end)
 
 
 
