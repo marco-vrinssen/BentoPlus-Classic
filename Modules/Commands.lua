@@ -1,10 +1,9 @@
 local KeywordTable = {}
-
-
+local playerName = UnitName("player")
 
 -- Keyword Matching Functions
-local function KeywordMatch(msg, playerName)
-    local playerLink = "|Hplayer:" .. playerName .. "|h|cFFFFD500[" .. playerName .. "]: |r|h"
+local function KeywordMatch(msg, senderName)
+    local playerLink = "|Hplayer:" .. senderName .. "|h|cFFFFD500[" .. senderName .. "]: |r|h"
     print(playerLink .. msg)
     PlaySound(3175, "Master", true)
 end
@@ -12,14 +11,14 @@ end
 local function KeywordFilter(msg)
     for _, keywordSet in ipairs(KeywordTable) do
         if type(keywordSet) == "string" then
-            local pattern = "%f[%a]" .. strlower(keywordSet) .. "%f[%A]"
+            local pattern = strlower(keywordSet)
             if strfind(strlower(msg), pattern) then
                 return true
             end
         elseif type(keywordSet) == "table" then
             local allMatch = true
             for _, keyword in ipairs(keywordSet) do
-                local pattern = "%f[%a]" .. strlower(keyword) .. "%f[%A]"
+                local pattern = strlower(keyword)
                 if not strfind(strlower(msg), pattern) then
                     allMatch = false
                     break
@@ -33,15 +32,14 @@ local function KeywordFilter(msg)
     return false
 end
 
-local function KeywordValidation(self, event, msg, playerName, languageName, channelName, ...)
+local function KeywordValidation(self, event, msg, senderName, languageName, channelName, ...)
     if next(KeywordTable) and strmatch(channelName, "%d+") then
         local channelNumber = tonumber(strmatch(channelName, "%d+"))
         if channelNumber and channelNumber >= 1 and channelNumber <= 10 and KeywordFilter(msg) then
-            KeywordMatch(msg, playerName)
+            KeywordMatch(msg, senderName)
         end
     end
 end
-
 
 
 -- Filter Events
@@ -54,9 +52,15 @@ SlashCmdList["FILTER"] = function(msg)
         wipe(KeywordTable)
         print("|cFFFFD500Filter:|r Cleared.")
         FilterEvents:UnregisterEvent("CHAT_MSG_CHANNEL")
+        FilterEvents:UnregisterEvent("CHAT_MSG_SAY")
+        FilterEvents:UnregisterEvent("CHAT_MSG_YELL")
+        FilterEvents:UnregisterEvent("CHAT_MSG_WHISPER")
     else
         if not FilterEvents:IsEventRegistered("CHAT_MSG_CHANNEL") then
             FilterEvents:RegisterEvent("CHAT_MSG_CHANNEL")
+            FilterEvents:RegisterEvent("CHAT_MSG_SAY")
+            FilterEvents:RegisterEvent("CHAT_MSG_YELL")
+            FilterEvents:RegisterEvent("CHAT_MSG_WHISPER")
         end
 
         if strfind(msg, "+") then
@@ -91,7 +95,6 @@ SlashCmdList["FILTER"] = function(msg)
         print("|cFFFFD500Filtering:|r " .. newKeywordsStr:gsub('"', '') .. ".")
     end
 end
-
 
 
 -- Whisper Who Command
@@ -143,7 +146,6 @@ SlashCmdList["WHISPERWHO"] = function(msg)
 end
 
 
-
 -- Whisper Last N Command
 local recentWhispers = {}
 
@@ -182,7 +184,6 @@ WhisperLastEvents:RegisterEvent("CHAT_MSG_WHISPER")
 WhisperLastEvents:SetScript("OnEvent", TrackWhispers)
 
 
-
 -- Close Tabs Command
 SLASH_CLOSETABS1 = "/c"
 SlashCmdList["CLOSETABS"] = function()
@@ -195,13 +196,11 @@ SlashCmdList["CLOSETABS"] = function()
 end
 
 
-
 -- Ready Check Command
 SLASH_READYCHECK1 = "/rc"
 SlashCmdList["READYCHECK"] = function()
     DoReadyCheck()
 end
-
 
 
 -- Quit Party Command
@@ -211,7 +210,6 @@ SlashCmdList["QUITPARTY"] = function()
         LeaveParty()
     end
 end
-
 
 
 -- Toggle Lua Errors Command
@@ -230,7 +228,6 @@ SLASH_TOGGLELUA1 = "/lua"
 SlashCmdList["TOGGLELUA"] = ToggleLuaErrors
 
 
-
 -- Reload UI Command
 local function CustomReloadUI()
     ReloadUI()
@@ -240,7 +237,6 @@ SLASH_RELOADUI1 = "/ui"
 SlashCmdList["RELOADUI"] = CustomReloadUI
 
 
-
 -- GX Restart Command
 local function CustomGXRestart()
     ConsoleExec("gxRestart")
@@ -248,7 +244,6 @@ end
 
 SLASH_GXRESTART1 = "/gx"
 SlashCmdList["GXRESTART"] = CustomGXRestart
-
 
 
 -- Reload and Restart Command
