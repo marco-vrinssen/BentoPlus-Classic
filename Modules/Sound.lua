@@ -1,4 +1,4 @@
-local soundIDsToMute = {
+local MutedSounds = {
     555124, -- Mechastrider Loop
     548067, -- Core Hound Fire Loop
     567677, -- Bow Pullback 1
@@ -11,25 +11,20 @@ local soundIDsToMute = {
 }
 
 local function MuteSounds()
-    for _, soundID in ipairs(soundIDsToMute) do
-        MuteSoundFile(soundID)
+    for _, SoundID in ipairs(MutedSounds) do
+        MuteSoundFile(SoundID)
     end
 end
 
-local function InitializeSoundSettings()
+local MuteSoundEvents = CreateFrame("Frame")
+MuteSoundEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
+MuteSoundEvents:SetScript("OnEvent", MuteSounds)
+
+
+SetCVar("Sound_OutputDriverIndex", "0")
+local ResetSoundEvents = CreateFrame("FRAME")
+ResetSoundEvents:RegisterEvent("VOICE_CHAT_OUTPUT_DEVICES_UPDATED")
+ResetSoundEvents:SetScript("OnEvent", function()
     SetCVar("Sound_OutputDriverIndex", "0")
     Sound_GameSystem_RestartSoundSystem()
-end
-
-local function OnEvent(self, event)
-    if event == "PLAYER_ENTERING_WORLD" then
-        MuteSounds()
-    elseif event == "VOICE_CHAT_OUTPUT_DEVICES_UPDATED" then
-        InitializeSoundSettings()
-    end
-end
-
-local eventFrame = CreateFrame("Frame")
-eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-eventFrame:RegisterEvent("VOICE_CHAT_OUTPUT_DEVICES_UPDATED")
-eventFrame:SetScript("OnEvent", OnEvent)
+end)
