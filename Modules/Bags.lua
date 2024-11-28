@@ -1,6 +1,6 @@
 local function BagSlotUpdate()
     MainMenuBarBackpackButton:ClearAllPoints()
-    MainMenuBarBackpackButton:SetPoint("BOTTOMRIGHT", HelpMicroButton, "TOPRIGHT", 0, 0)
+    MainMenuBarBackpackButton:SetPoint("BOTTOMRIGHT", HelpMicroButton, "TOPRIGHT", -2, -12)
     MainMenuBarBackpackButton:SetScale(0.8)
 
     CharacterBag0Slot:ClearAllPoints()
