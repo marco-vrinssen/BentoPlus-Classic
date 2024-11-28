@@ -16,15 +16,21 @@ local function MuteSounds()
     end
 end
 
-local MuteSoundEvents = CreateFrame("Frame")
-MuteSoundEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
-MuteSoundEvents:SetScript("OnEvent", MuteSounds)
-
-
-SetCVar("Sound_OutputDriverIndex", "0")
-local ResetSoundEvents = CreateFrame("FRAME")
-ResetSoundEvents:RegisterEvent("VOICE_CHAT_OUTPUT_DEVICES_UPDATED")
-ResetSoundEvents:SetScript("OnEvent", function()
+local function ResetSoundSettings()
     SetCVar("Sound_OutputDriverIndex", "0")
     Sound_GameSystem_RestartSoundSystem()
-end)
+end
+
+local function OnEvent(self, event)
+    if event == "PLAYER_ENTERING_WORLD" then
+        MuteSounds()
+        ResetSoundSettings()
+    elseif event == "VOICE_CHAT_OUTPUT_DEVICES_UPDATED" then
+        ResetSoundSettings()
+    end
+end
+
+local SoundEvents = CreateFrame("Frame")
+SoundEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
+SoundEvents:RegisterEvent("VOICE_CHAT_OUTPUT_DEVICES_UPDATED")
+SoundEvents:SetScript("OnEvent", OnEvent)
