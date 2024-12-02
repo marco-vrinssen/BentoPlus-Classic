@@ -1,23 +1,28 @@
 local function ReloadMailUI()
-    ReloadUI()
-end
-
-local function LootAllMail()
-    for i = 1, GetInboxNumItems() do
-        AutoLootMailItem(i)
+    local function ToggleInboxFrame(count)
+        if count > 0 then
+            InboxFrame:Hide()
+            C_Timer.After(0, function()
+                InboxFrame:Show()
+                ToggleInboxFrame(count - 1)
+            end)
+        end
     end
+    ToggleInboxFrame(10)
 end
 
-local function OverwriteOpenAllMailButton()
+local function ClickOpenAllMailButton()
     if OpenAllMail then
-        OpenAllMail:SetScript("OnClick", LootAllMail)
+        C_Timer.After(0, function()
+            OpenAllMail:Click()
+        end)
     end
 end
 
 local function CreateCheckButton()
     local ReloadUIButton = CreateFrame("Button", "ReloadMailUIButton", InboxFrame, "UIPanelButtonTemplate")
     ReloadUIButton:SetSize(120, 20)
-    ReloadUIButton:SetText("Reload")
+    ReloadUIButton:SetText("Reload Inbox")
     ReloadUIButton:SetPoint("TOPRIGHT", MailFrame, "BOTTOMRIGHT", 0, -4)
     ReloadUIButton:SetScript("OnClick", ReloadMailUI)
 end
@@ -27,6 +32,6 @@ MailEvents:RegisterEvent("MAIL_SHOW")
 MailEvents:SetScript("OnEvent", function(_, event)
     if event == "MAIL_SHOW" then
         CreateCheckButton()
-        OverwriteOpenAllMailButton()
+        ClickOpenAllMailButton()
     end
 end)
