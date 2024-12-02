@@ -16,10 +16,11 @@ Modules/Chat.lua
 Modules/ComboPoints.lua
 Modules/Commands.lua
 Modules/Config.lua
-Modules/Dialogs.lua
 Modules/ExhaustionTimers.lua
 Modules/FrameRateDisplay.lua
 Modules/Intro.lua
+Modules/ItemDestroy.lua
+Modules/ItemDialogs.lua
 Modules/LFG.lua
 Modules/Loot.lua
 Modules/Mailbox.lua
