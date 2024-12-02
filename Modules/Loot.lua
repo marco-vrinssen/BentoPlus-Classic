@@ -1,8 +1,14 @@
-local function UpdateAutoLoot(self, event)
+function FastLoot()
     if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
-        local NumItems = GetNumLootItems()
-        for CurrentItem = NumItems, 1, -1 do
-            LootSlot(CurrentItem)
+        LootFrame:Hide()
+        for NumLoot = GetNumLootItems(), 1, -1 do
+            LootSlot(NumLoot)
         end
+        LootFrame:Show()
+        CloseLoot()
     end
 end
+
+local LootEvents = CreateFrame("Frame")
+LootEvents:RegisterEvent("LOOT_READY")
+LootEvents:SetScript("OnEvent", FastLoot)
