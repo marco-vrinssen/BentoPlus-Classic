@@ -35,7 +35,7 @@ end
 local function KeywordValidation(self, event, msg, senderName, languageName, channelName, ...)
     if next(KeywordTable) and strmatch(channelName, "%d+") then
         local channelNumber = tonumber(strmatch(channelName, "%d+"))
-        if channelNumber and channelNumber >= 1 and channelNumber <= 10 and KeywordFilter(msg) then
+        if channelNumber and channelNumber >= 1 and channelNumber <= 20 and KeywordFilter(msg) then
             KeywordMatch(msg, senderName)
         end
     end
@@ -52,15 +52,9 @@ SlashCmdList["FILTER"] = function(msg)
         wipe(KeywordTable)
         print("|cFFFFD500Filter:|r Cleared.")
         FilterEvents:UnregisterEvent("CHAT_MSG_CHANNEL")
-        FilterEvents:UnregisterEvent("CHAT_MSG_SAY")
-        FilterEvents:UnregisterEvent("CHAT_MSG_YELL")
-        FilterEvents:UnregisterEvent("CHAT_MSG_WHISPER")
     else
         if not FilterEvents:IsEventRegistered("CHAT_MSG_CHANNEL") then
             FilterEvents:RegisterEvent("CHAT_MSG_CHANNEL")
-            FilterEvents:RegisterEvent("CHAT_MSG_SAY")
-            FilterEvents:RegisterEvent("CHAT_MSG_YELL")
-            FilterEvents:RegisterEvent("CHAT_MSG_WHISPER")
         end
 
         if strfind(msg, "+") then
