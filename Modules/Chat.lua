@@ -104,3 +104,13 @@ hooksecurefunc("FCF_OpenTemporaryWindow", function()
         AlignEditBoxHeaders()
     end
 end)
+
+
+-- Recolor incoming whisper messages
+local function RecolorWhisperMessages(self, event, message, sender, ...)
+    if event == "CHAT_MSG_WHISPER" then
+        return false, "|cFF80FFD4" .. message .. "|r", sender, ...
+    end
+end
+
+ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", RecolorWhisperMessages)
