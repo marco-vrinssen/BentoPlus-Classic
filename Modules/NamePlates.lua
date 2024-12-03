@@ -28,6 +28,10 @@ local function NameplateUpdate(Nameplate, unitID)
     UnitNameplate.name:SetPoint("BOTTOM", NameplateHealthbar, "TOP", 0, 8)
     UnitNameplate.name:SetFont(STANDARD_TEXT_FONT, 12, "OUTLINE")
 
+    UnitNameplate.RaidTargetFrame:ClearAllPoints()
+    UnitNameplate.RaidTargetFrame:SetScale(0.8)
+    UnitNameplate.RaidTargetFrame:SetPoint("LEFT", NameplateHealthbar, "RIGHT", 4, 2)
+
     if not NameplateHealthbar.originalColor then
         local r, g, b = NameplateHealthbar:GetStatusBarColor()
         NameplateHealthbar.originalColor = {r, g, b}
