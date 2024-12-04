@@ -1,7 +1,7 @@
 local function FramerateUpdate()
     FramerateLabel:SetAlpha(0)
     FramerateText:ClearAllPoints()
-    FramerateText:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 16, -16)
+    FramerateText:SetPoint("TOP", UIParent, "TOP", 0, -16)
 end
 
 local FramerateEvents = CreateFrame("Frame")
