@@ -1,7 +1,3 @@
-local LootEvents = CreateFrame("Frame")
-LootEvents:RegisterEvent("LOOT_READY")
-LootEvents:SetScript("OnEvent", UpdateAutoLoot)
-
 local function RepairItems()
     if CanMerchantRepair() then
         RepairAllItems()

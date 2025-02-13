@@ -1,3 +1,4 @@
+
 local KeywordTable = {}
 local playerName = UnitName("player")
 

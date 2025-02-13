@@ -1,3 +1,23 @@
+-- Graphics COnfiguration
+
+local function ConfigUpdate()
+    SetCVar("ffxGlow", 0)
+    SetCVar("ffxDeath", 0)
+    SetCVar("ffxNether", 0)
+
+    SetCVar("WorldTextScale", 1.25)
+    
+    SetCVar("cameraDistanceMaxZoomFactor", 2.4)
+end
+
+local ConfigEvents = CreateFrame("Frame")
+ConfigEvents:RegisterEvent("PLAYER_LOGIN")
+ConfigEvents:SetScript("OnEvent", ConfigUpdate)
+
+
+
+
+-- Sound Configuration
 local MutedSounds = {
     555124, -- Mechastrider Loop
     548067, -- Core Hound Fire Loop

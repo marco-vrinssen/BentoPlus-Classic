@@ -1,3 +1,5 @@
+
+-- Faster Auto Loot
 function FastLoot()
     if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
         LootFrame:Hide()
