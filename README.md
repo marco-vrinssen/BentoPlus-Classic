@@ -4,6 +4,7 @@
 
 ### Features
 - **Auto Looting**: Speeds up auto looting and hides the LootFrame.
+- **Auto Sell and Repair**: Automatically sells grey items and repairs all items when interacting with a merchant.
 - **Sound Muting**: Mutes specific in-game sounds (e.g., bow, gun, Mechastrider mount).
 - **CVars Adjustments**: Adjusts CVars for better performance and clarity.
 
@@ -20,3 +21,8 @@
 - `/ww MESSAGE`: Sends the MESSAGE to all players in a currently open /who instance.
 - `/ww N MESSAGE`: Sends the MESSAGE to the first N players in a currently open /who instance.
 - `/ww -CLASS MESSAGE`: Sends the MESSAGE to all players not of the specified CLASS in a currently open /who instance.
+- `/wl N MESSAGE`: Sends the MESSAGE to the last N players who whispered you.
+- `/ui`: Reloads the user interface.
+- `/gx`: Restarts the graphics engine.
+- `/rl`: Reloads the user interface and the graphics engine.
+- `/bentocmd`: Displays a list of available commands.

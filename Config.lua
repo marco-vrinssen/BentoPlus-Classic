@@ -1,21 +1,24 @@
--- Graphics COnfiguration
-
-local function ConfigUpdate()
+-- Graphics Configuration
+local function ConfigureGraphics()
+    -- Disable various graphical effects
     SetCVar("ffxGlow", 0)
     SetCVar("ffxDeath", 0)
     SetCVar("ffxNether", 0)
 
+    -- Set world text scale
     SetCVar("WorldTextScale", 1.25)
     
+    -- Set maximum camera zoom distance
     SetCVar("cameraDistanceMaxZoomFactor", 2.4)
 end
 
-local ConfigEvents = CreateFrame("Frame")
-ConfigEvents:RegisterEvent("PLAYER_LOGIN")
-ConfigEvents:SetScript("OnEvent", ConfigUpdate)
+local function OnPlayerLogin()
+    ConfigureGraphics()
+end
 
-
-
+local GraphicsEvents = CreateFrame("Frame")
+GraphicsEvents:RegisterEvent("PLAYER_LOGIN")
+GraphicsEvents:SetScript("OnEvent", OnPlayerLogin)
 
 -- Sound Configuration
 local MutedSounds = {
@@ -37,16 +40,19 @@ local function MuteSounds()
 end
 
 local function SetSystemSound()
+    -- Set the sound output driver to the default and restart the sound system
     SetCVar("Sound_OutputDriverIndex", "0")
     Sound_GameSystem_RestartSoundSystem()
 end
 
-local SoundEvents = CreateFrame("Frame")
-SoundEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
-SoundEvents:SetScript("OnEvent", function()
+local function OnPlayerEnteringWorld()
     MuteSounds()
     SetSystemSound()
-end)
+end
+
+local SoundEvents = CreateFrame("Frame")
+SoundEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
+SoundEvents:SetScript("OnEvent", OnPlayerEnteringWorld)
 
 hooksecurefunc("SetCVar", function(cvar, value)
     if cvar == "Sound_OutputDriverIndex" and value ~= "0" then
