@@ -1,15 +1,11 @@
 -- Graphics Configuration
 local function ConfigureGraphics()
-    -- Disable various graphical effects
     SetCVar("ffxGlow", 0)
     SetCVar("ffxDeath", 0)
     SetCVar("ffxNether", 0)
-
-    -- Set world text scale
     SetCVar("WorldTextScale", 1.25)
-    
-    -- Set maximum camera zoom distance
     SetCVar("cameraDistanceMaxZoomFactor", 2)
+    SetCVar("HardwareCursor", 1)
 end
 
 local function OnPlayerLogin()
@@ -40,7 +36,6 @@ local function MuteSounds()
 end
 
 local function SetSystemSound()
-    -- Set the sound output driver to the default and restart the sound system
     SetCVar("Sound_OutputDriverIndex", "0")
     Sound_GameSystem_RestartSoundSystem()
 end

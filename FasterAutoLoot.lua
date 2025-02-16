@@ -5,6 +5,7 @@ local function FasterLoot()
         for NumLoot = GetNumLootItems(), 1, -1 do
             LootSlot(NumLoot)
         end
+        LootFrame:Show()
     end
 end
 
