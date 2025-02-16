@@ -9,7 +9,7 @@ local function ConfigureGraphics()
     SetCVar("WorldTextScale", 1.25)
     
     -- Set maximum camera zoom distance
-    SetCVar("cameraDistanceMaxZoomFactor", 2.4)
+    SetCVar("cameraDistanceMaxZoomFactor", 2)
 end
 
 local function OnPlayerLogin()
