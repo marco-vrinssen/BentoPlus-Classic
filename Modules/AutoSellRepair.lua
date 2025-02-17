@@ -13,7 +13,7 @@ local function SellGreyItems()
             if ItemLink then
                 local _, _, ItemRarity = GetItemInfo(ItemLink)
                 if ItemRarity == 0 then
-                    UseContainerItem(NumBags, NumSlots)
+                    C_Container.UseContainerItem(NumBags, NumSlots)
                 end
             end
         end
