@@ -5,10 +5,12 @@ local function FasterLoot()
         if lootMethod == "master" and masterLooter == UnitName("player") then
             return
         end
+        local numLoot = GetNumLootItems()
+        if not numLoot then return end
         LootFrame:Hide()
         LootFrame:SetAlpha(0)
-        for NumLoot = GetNumLootItems(), 1, -1 do
-            LootSlot(NumLoot)
+        for i = numLoot, 1, -1 do
+            LootSlot(i)
         end
         LootFrame:Show()
         LootFrame:SetAlpha(1)
