@@ -8,8 +8,8 @@ end
 -- Function to sell all grey (poor quality) items in the player's bags
 local function SellGreyItems()
     for NumBags = 0, 4 do
-        for NumSlots = 1, GetContainerNumSlots(NumBags) do
-            local ItemLink = GetContainerItemLink(NumBags, NumSlots)
+        for NumSlots = 1, C_Container.GetContainerNumSlots(NumBags) do
+            local ItemLink = C_Container.GetContainerItemLink(NumBags, NumSlots)
             if ItemLink then
                 local _, _, ItemRarity = GetItemInfo(ItemLink)
                 if ItemRarity == 0 then
