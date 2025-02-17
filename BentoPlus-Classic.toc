@@ -4,8 +4,11 @@
 ## Version: 1.0
 ## Author: MIYANKO
 
-AutoSellRepair.lua
-Commands.lua
-CommandsIntro.lua
-Config.lua
-FasterAutoLoot.lua
+Modules/AutoConfirm.lua
+Modules/AutoSellRepair.lua
+Modules/Chat.lua
+Modules/Commands.lua
+Modules/FasterAutoLoot.lua
+Modules/Graphics.lua
+Modules/Intro.lua
+Modules/Sound.lua
