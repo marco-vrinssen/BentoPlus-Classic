@@ -31,7 +31,9 @@ local function SetEvent()
 end
 
 if AutoConfirmConfig.noConfirmLoot then SetEvent() end
-NoConfirmLootButton:HookScript("OnClick", SetEvent)  -- assuming a generic UI button exists
+if NoConfirmLootButton then
+	NoConfirmLootButton:HookScript("OnClick", SetEvent)  -- assuming a generic UI button exists
+end
 
 -- Auto Confirm Delete Dialogs
 local typeDeleteLine = gsub(DELETE_GOOD_ITEM, "[\r\n]", "@")
