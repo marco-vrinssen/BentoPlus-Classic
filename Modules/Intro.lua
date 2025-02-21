@@ -28,8 +28,5 @@ SlashCmdList["BENTOCMD"] = function(msg, editBox)
         print("|cFFFFD500/gx|r: Restarts the graphics engine.")
         print("|cFFFFD500/rl|r: Reloads the user interface and the graphics engine.")
         print("|cFFFFD500/lua|r: Toggles the display of LUA errors.")
-
-        print("|cFFFFD500CTRL + P / CMD + P while hovering over an Item|r: Generates a URL for Auction Goblin for that item.")
-        print("|cFFFFD500Right click a player name or portrait|r: Have two menu entries to generate an armory or warcraft logs link for that player.")
     end
 end
