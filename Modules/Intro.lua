@@ -2,9 +2,11 @@ local function CommandsIntro()
     print("/bentocmd for available commands.")
 end
 
+
 local IntroEvents = CreateFrame("Frame")
 IntroEvents:RegisterEvent("PLAYER_LOGIN")
 IntroEvents:SetScript("OnEvent", CommandsIntro)
+
 
 SLASH_BENTOCMD1 = "/bentocmd"
 SlashCmdList["BENTOCMD"] = function(msg, editBox)

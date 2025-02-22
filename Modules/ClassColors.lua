@@ -1,4 +1,3 @@
--- Enable class colors in chat messages
 SetCVar("chatClassColorOverride", "0")
 
 local chatTypes = {

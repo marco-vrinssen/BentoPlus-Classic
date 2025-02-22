@@ -4,9 +4,8 @@
 ## Version: 1.0
 ## Author: MIYANKO
 
-Modules/AutoConfirm.lua
 Modules/AutoSellRepair.lua
-Modules/Chat.lua
+Modules/ClassColors.lua
 Modules/Commands.lua
 Modules/FasterAutoLoot.lua
 Modules/Graphics.lua

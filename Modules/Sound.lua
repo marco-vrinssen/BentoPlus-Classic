@@ -1,4 +1,3 @@
--- Sound Configuration
 local MutedSounds = {
     555124, -- Mechastrider Loop
     548067, -- Core Hound Fire Loop
@@ -12,11 +11,9 @@ local MutedSounds = {
 }
 
 local function ApplySoundConfiguration()
-    -- Mute configured sounds
     for _, SoundID in ipairs(MutedSounds) do
         MuteSoundFile(SoundID)
     end
-    -- Reset system sound output if needed
     if GetCVar("Sound_OutputDriverIndex") ~= "0" then
         SetCVar("Sound_OutputDriverIndex", "0")
         Sound_GameSystem_RestartSoundSystem()

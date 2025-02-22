@@ -1,11 +1,10 @@
--- Function to repair all items if the merchant can repair
 local function RepairItems()
     if CanMerchantRepair() then
         RepairAllItems()
     end
 end
 
--- Function to sell all grey (poor quality) items in the player's bags
+
 local function SellGreyItems()
     for NumBags = 0, 4 do
         for NumSlots = 1, C_Container.GetContainerNumSlots(NumBags) do
@@ -20,14 +19,14 @@ local function SellGreyItems()
     end
 end
 
--- Function to repair items and sell grey items when the merchant window is opened
+
 local function AutoSellRepair()
     RepairItems()
     SellGreyItems()
     C_Timer.After(0, SellGreyItems)
 end
 
--- Create a frame to handle merchant events
+
 local MerchantEvents = CreateFrame("Frame")
 MerchantEvents:RegisterEvent("MERCHANT_SHOW")
 MerchantEvents:SetScript("OnEvent", AutoSellRepair)

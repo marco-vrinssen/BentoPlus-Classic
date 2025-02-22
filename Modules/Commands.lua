@@ -1,15 +1,13 @@
--- Initialize KeywordTable and get player name
 local KeywordTable = {}
 local playerName = UnitName("player")
 
--- Function to match keywords in messages
 local function KeywordMatch(msg, senderName)
     local playerLink = "|Hplayer:" .. senderName .. "|h|cFFFFD500[" .. senderName .. "]: |r|h"
     print(playerLink .. msg)
     PlaySound(3175, "Master", true)
 end
 
--- Function to filter messages based on keywords
+
 local function KeywordFilter(msg)
     for _, keywordSet in ipairs(KeywordTable) do
         if type(keywordSet) == "string" then
@@ -34,7 +32,7 @@ local function KeywordFilter(msg)
     return false
 end
 
--- Function to validate keywords in chat messages
+
 local function KeywordValidation(self, event, msg, senderName, languageName, channelName, ...)
     if next(KeywordTable) and strmatch(channelName, "%d+") then
         local channelNumber = tonumber(strmatch(channelName, "%d+"))
@@ -44,11 +42,11 @@ local function KeywordValidation(self, event, msg, senderName, languageName, cha
     end
 end
 
--- Create frame to filter events
+
 local FilterEvents = CreateFrame("Frame")
 FilterEvents:SetScript("OnEvent", KeywordValidation)
 
--- Slash command to manage keyword filters
+
 SLASH_FILTER1 = "/f"
 SlashCmdList["FILTER"] = function(msg)
     if msg == "" then
@@ -93,7 +91,7 @@ SlashCmdList["FILTER"] = function(msg)
     end
 end
 
--- Slash command to whisper players from the /who list
+
 SLASH_WHISPERWHO1 = "/ww"
 SlashCmdList["WHISPERWHO"] = function(msg)
     local limit, classExclusion, message
@@ -141,10 +139,10 @@ SlashCmdList["WHISPERWHO"] = function(msg)
     end
 end
 
--- Track recent whispers
+
 local recentWhispers = {}
 
--- Slash command to whisper the last N players
+
 SLASH_WHISPERLASTN1 = "/wl"
 SlashCmdList["WHISPERLASTN"] = function(msg)
     local num, message = msg:match("^(%d+) (.+)$")
@@ -168,7 +166,7 @@ SlashCmdList["WHISPERLASTN"] = function(msg)
     end
 end
 
--- Function to track whispers
+
 local function TrackWhispers(_, _, msg, playerName)
     table.insert(recentWhispers, playerName)
     if #recentWhispers > 100 then
@@ -176,12 +174,12 @@ local function TrackWhispers(_, _, msg, playerName)
     end
 end
 
--- Create frame to track whisper events
+
 local WhisperLastEvents = CreateFrame("Frame")
 WhisperLastEvents:RegisterEvent("CHAT_MSG_WHISPER")
 WhisperLastEvents:SetScript("OnEvent", TrackWhispers)
 
--- Slash command to close temporary chat tabs
+
 SLASH_CLOSETABS1 = "/c"
 SlashCmdList["CLOSETABS"] = function()
     for _, chatFrameName in pairs(CHAT_FRAMES) do
@@ -192,13 +190,13 @@ SlashCmdList["CLOSETABS"] = function()
     end
 end
 
--- Slash command to initiate a ready check
+
 SLASH_READYCHECK1 = "/rc"
 SlashCmdList["READYCHECK"] = function()
     DoReadyCheck()
 end
 
--- Slash command to leave the party
+
 SLASH_QUITPARTY1 = "/q"
 SlashCmdList["QUITPARTY"] = function()
     if IsInGroup() then
@@ -206,7 +204,7 @@ SlashCmdList["QUITPARTY"] = function()
     end
 end
 
--- Function to toggle Lua errors
+
 local function ToggleLuaErrors()
     local currentSetting = GetCVar("scriptErrors")
     if currentSetting == "1" then
@@ -218,34 +216,34 @@ local function ToggleLuaErrors()
     end
 end
 
--- Slash command to toggle Lua errors
+
 SLASH_TOGGLELUA1 = "/lua"
 SlashCmdList["TOGGLELUA"] = ToggleLuaErrors
 
--- Function to reload the UI
+
 local function CustomReloadUI()
     ReloadUI()
 end
 
--- Slash command to reload the UI
+
 SLASH_RELOADUI1 = "/ui"
 SlashCmdList["RELOADUI"] = CustomReloadUI
 
--- Function to restart graphics engine
+
 local function CustomGXRestart()
     ConsoleExec("gxRestart")
 end
 
--- Slash command to restart graphics engine
+
 SLASH_GXRESTART1 = "/gx"
 SlashCmdList["GXRESTART"] = CustomGXRestart
 
--- Function to reload UI and restart graphics engine
+
 local function CustomReloadAndRestart()
     ConsoleExec("gxRestart")
     ReloadUI()
 end
 
--- Slash command to reload UI and restart graphics engine
+
 SLASH_RELOADANDRESTART1 = "/rl"
 SlashCmdList["RELOADANDRESTART"] = CustomReloadAndRestart

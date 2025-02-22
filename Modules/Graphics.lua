@@ -1,4 +1,3 @@
--- Graphics Configuration
 local function UpdateCVars()
     SetCVar("ffxGlow", 0)
     SetCVar("ffxDeath", 0)
