@@ -10,6 +10,7 @@ local MutedSounds = {
     567721, -- Gun Release 1
 }
 
+
 local function ApplySoundConfiguration()
     for _, SoundID in ipairs(MutedSounds) do
         MuteSoundFile(SoundID)
@@ -20,9 +21,11 @@ local function ApplySoundConfiguration()
     end
 end
 
+
 local SoundEvents = CreateFrame("Frame")
 SoundEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
 SoundEvents:SetScript("OnEvent", ApplySoundConfiguration)
+
 
 hooksecurefunc("SetCVar", function(cvar, value)
     if cvar == "Sound_OutputDriverIndex" and value ~= "0" then

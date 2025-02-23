@@ -192,20 +192,15 @@ end
 
 
 SLASH_READYCHECK1 = "/rc"
-SlashCmdList["READYCHECK"] = function()
-    DoReadyCheck()
-end
+SlashCmdList["READYCHECK"] = function() DoReadyCheck() end
 
 
 SLASH_QUITPARTY1 = "/q"
-SlashCmdList["QUITPARTY"] = function()
-    if IsInGroup() then
-        LeaveParty()
-    end
-end
+SlashCmdList["QUITPARTY"] = function() if IsInGroup() then LeaveParty() end end
 
 
-local function ToggleLuaErrors()
+SLASH_TOGGLELUA1 = "/lua"
+SlashCmdList["TOGGLELUA"] = function()
     local currentSetting = GetCVar("scriptErrors")
     if currentSetting == "1" then
         SetCVar("scriptErrors", 0)
@@ -217,33 +212,16 @@ local function ToggleLuaErrors()
 end
 
 
-SLASH_TOGGLELUA1 = "/lua"
-SlashCmdList["TOGGLELUA"] = ToggleLuaErrors
-
-
-local function CustomReloadUI()
-    ReloadUI()
-end
-
-
 SLASH_RELOADUI1 = "/ui"
-SlashCmdList["RELOADUI"] = CustomReloadUI
-
-
-local function CustomGXRestart()
-    ConsoleExec("gxRestart")
-end
+SlashCmdList["RELOADUI"] = function() ReloadUI() end
 
 
 SLASH_GXRESTART1 = "/gx"
-SlashCmdList["GXRESTART"] = CustomGXRestart
-
-
-local function CustomReloadAndRestart()
-    ConsoleExec("gxRestart")
-    ReloadUI()
-end
+SlashCmdList["GXRESTART"] = function() ConsoleExec("gxRestart") end
 
 
 SLASH_RELOADANDRESTART1 = "/rl"
-SlashCmdList["RELOADANDRESTART"] = CustomReloadAndRestart
+SlashCmdList["RELOADANDRESTART"] = function()
+    ConsoleExec("gxRestart")
+    ReloadUI()
+end
