@@ -12,3 +12,4 @@ Modules/Loot.lua
 Modules/Mail.lua
 Modules/SellRepair.lua
 Modules/Sound.lua
+Modules/TargetMacro.lua
