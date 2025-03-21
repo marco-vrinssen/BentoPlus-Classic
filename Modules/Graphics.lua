@@ -8,14 +8,7 @@ local function updateCVars()
     SetCVar("ffxDeath", 0)
     SetCVar("ffxNether", 0)
 
-    SetCVar("WorldTextScale", 1.5)
-
-    SetCVar("UnitNameNPC", 1)
-    SetCVar("UnitNameHostleNPC", 0)
-    SetCVar("UnitNameInteractiveNPC", 0)
-
-    SetCVar("UnitNamePlayerGuild", 1)
-    SetCVar("UnitNamePlayerPVPTitle", 0)
+    SetCVar("WorldTextScale", 1.25)
 end
 
 local graphicsFrame = CreateFrame("Frame")
