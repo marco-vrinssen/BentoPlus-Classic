@@ -5,6 +5,7 @@
 ## Author: MIYANKO
 
 Modules/_Tokens.lua
+Modules/Chat.lua
 Modules/Dialogs.lua
 Modules/Graphics.lua
 Modules/Loot.lua
