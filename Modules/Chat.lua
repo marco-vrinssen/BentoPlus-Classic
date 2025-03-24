@@ -1,18 +1,12 @@
--- FUNCTION TO JOIN CHANNELS IF NOT ALREADY JOINED
-
-local function joinChannels()
-    local channels = { "World", "LookingForGroup", "Services" }
+-- FUNCTION TO AUTO JOIN CHANNELS IN SPECIFIC ORDER
+local function autoJoinChannels()
+    local channels = { "General", "Trade", "Services", "World", "LookingForGroup" }
     for _, channel in ipairs(channels) do
-        local id = GetChannelName(channel)
-        if id == 0 then
-            JoinChannelByName(channel)
-        end
+        JoinChannelByName(channel) -- Join the channel
     end
 end
 
-
--- REGISTER EVENT TO CHECK CHANNELS ON PLAYER LOGIN
-
+-- REGISTER EVENTS TO AUTO JOIN CHANNELS
 local channelEvents = CreateFrame("Frame")
 channelEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
-channelEvents:SetScript("OnEvent", joinChannels)
+channelEvents:SetScript("OnEvent", autoJoinChannels)
