@@ -4,11 +4,10 @@
 ## Version: 1.0
 ## Author: MIYANKO
 
-Modules/_Tokens.lua
-Modules/Chat.lua
-Modules/Dialogs.lua
-Modules/Graphics.lua
-Modules/Loot.lua
-Modules/Mail.lua
-Modules/SellRepair.lua
-Modules/Sound.lua
+Modules/AutoSellRepair.lua
+Modules/ConfirmDialogs.lua
+Modules/CVarGraphics.lua
+Modules/FasterLooting.lua
+Modules/FixMail.lua
+Modules/JoinChannels.lua
+Modules/MuteSounds.lua
