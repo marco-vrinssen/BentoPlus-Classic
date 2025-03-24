@@ -4,11 +4,13 @@ local function updateCVars()
     SetCVar("cameraDistanceMaxZoomFactor", 2.4)
     SetCVar("HardwareCursor", 1)
 
+    SetCVar("WorldTextScale", 1.25)
+
     SetCVar("ffxGlow", 0)
     SetCVar("ffxDeath", 0)
     SetCVar("ffxNether", 0)
-
-    SetCVar("WorldTextScale", 1.25)
+    SetCVar("farclip", 4000)
+    SetCVar("WeatherDensity", 0)
 end
 
 local graphicsFrame = CreateFrame("Frame")
