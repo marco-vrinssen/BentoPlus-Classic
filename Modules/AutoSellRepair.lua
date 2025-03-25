@@ -19,7 +19,7 @@ local function sellGreyItems()
           local itemLink = C_Container.GetContainerItemLink(bag, slot)
           if itemLink then
               local _, _, itemRarity, _, _, _, _, _, _, _, itemSellPrice = GetItemInfo(itemLink)
-              local itemCount = select(2, C_Container.GetContainerItemInfo(bag, slot))
+              local itemCount = select(2, C_Container.GetContainerItemInfo(bag, slot)) or 0
               if itemRarity == 0 and itemSellPrice > 0 then
                   totalEarnings = totalEarnings + (itemSellPrice * itemCount)
                   C_Container.UseContainerItem(bag, slot)
