@@ -10,3 +10,4 @@ Modules/CVarGraphics.lua
 Modules/FasterLooting.lua
 Modules/JoinChannels.lua
 Modules/MuteSounds.lua
+Modules/RaidChat.lua
