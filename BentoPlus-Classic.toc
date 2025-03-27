@@ -8,5 +8,4 @@ Modules/AutoSellRepair.lua
 Modules/ConfirmDialogs.lua
 Modules/CVarGraphics.lua
 Modules/FasterLooting.lua
-Modules/JoinChannels.lua
 Modules/MuteSounds.lua
