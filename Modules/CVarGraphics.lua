@@ -13,6 +13,9 @@ local function updateCVars()
     SetCVar("WeatherDensity", 0)
 end
 
+
+-- INITIALIZE GRAPHICS FRAME AND REGISTER EVENT
+
 local graphicsFrame = CreateFrame("Frame")
 graphicsFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 graphicsFrame:SetScript("OnEvent", updateCVars)
