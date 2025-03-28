@@ -7,10 +7,7 @@ local mutedSounds = {
     567720, -- GunLoad02 
     567723, -- GunLoad03 
 
-    567721, -- GunFire01
-
     567670, -- BowPreCastLoop
-
     567677, -- BowPullback 
     567675, -- BowPullback02  
     567676, -- BowPullback03 
