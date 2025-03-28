@@ -1,16 +1,23 @@
--- MUTE SOUNDS
+-- MUTE SOUNDS BY ID
 
 local mutedSounds = {
-    555124,
-    548067,
-    567677,
-    567675,
-    567676,
-    567719,
-    567720,
-    567723,
-    567721,
+    555124, -- MechaStriderLoop
+    
+    567719, -- GunLoad01
+    567720, -- GunLoad02 
+    567723, -- GunLoad03 
+
+    567721, -- GunFire01
+
+    567670, -- BowPreCastLoop
+
+    567677, -- BowPullback 
+    567675, -- BowPullback02  
+    567676, -- BowPullback03 
 }
+
+
+-- SOUND CONFIGURATION APPLICATION
 
 local function applySoundConfiguration()
     for _, soundId in ipairs(mutedSounds) do
@@ -19,5 +26,5 @@ local function applySoundConfiguration()
 end
 
 local soundFrame = CreateFrame("Frame")
-soundFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+soundFrame:RegisterEvent("PLAYER_LOGIN")
 soundFrame:SetScript("OnEvent", applySoundConfiguration)
