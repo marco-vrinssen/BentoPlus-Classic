@@ -4,7 +4,8 @@
 ## Version: 1.0
 ## Author: MIYANKO
 
-Modules/AutoSellRepair.lua
+Modules/AutoRepair.lua
+Modules/AutoSellJunk.lua
 Modules/Config.lua
 Modules/Configuration.lua
 Modules/ConfirmDialogs.lua
