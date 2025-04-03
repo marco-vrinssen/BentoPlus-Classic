@@ -5,7 +5,6 @@
 ## Author: MIYANKO
 
 Modules/AutoSellRepair.lua
+Modules/Config.lua
 Modules/ConfirmDialogs.lua
-Modules/CVarGraphics.lua
-Modules/FasterLooting.lua
-Modules/MuteSounds.lua
+Modules/FastLoot.lua
