@@ -6,5 +6,6 @@
 
 Modules/AutoSellRepair.lua
 Modules/Config.lua
+Modules/Configuration.lua
 Modules/ConfirmDialogs.lua
 Modules/FastLoot.lua
