@@ -1,20 +1,14 @@
 -- APPLY GRAPHICS CONFIGURATION
 
 local function applyGraphicsConfiguration()
-    local graphicsCVars = {
-        cameraDistanceMaxZoomFactor = 2.4,
-        HardwareCursor = 1,
-        WorldTextScale = 1.25,
-        ffxGlow = 0,
-        ffxDeath = 0,
-        ffxNether = 0,
-        farclip = 0,
-        WeatherDensity = 0,
-    }
-
-    for cvar, value in pairs(graphicsCVars) do
-        SetCVar(cvar, value)
-    end
+    SetCVar("cameraDistanceMaxZoomFactor", 2.8)
+    SetCVar("HardwareCursor", 1)
+    SetCVar("WorldTextScale", 1.25)
+    SetCVar("ffxGlow", 0)
+    SetCVar("ffxDeath", 0)
+    SetCVar("ffxNether", 0)
+    SetCVar("farclip", 0)
+    SetCVar("WeatherDensity", 0)
 end
 
 
@@ -30,6 +24,7 @@ local function applySoundConfiguration()
         567677, -- BowPullback
         567675, -- BowPullback02
         567676, -- BowPullback03
+        569429, -- PetScreech
     }
 
     for _, soundId in ipairs(mutedSounds) do
