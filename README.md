@@ -1,19 +1,30 @@
 # Bento Plus Classic
 
-## Addon for World of Warcraft Classic with simple and resource-efficient quality of life improvements.
+A lightweight, performance-focused addon for World of Warcraft Classic that provides essential quality of life improvements without sacrificing resources.
 
-### Features
-- Auto-confirm or auto-close confirmation dialogs.
-- Optimize graphics settings for improved performance and visual clarity.
-- Mute distracting sounds including mechastrider loop and bow pull sounds.
-- Enable fast, automatic looting.
-- Automatically sell gray (junk) items when visiting vendors and repair equipment when possible.
-- Fix mail interface display issues.
-- Automatically join World, LookingForGroup, and Services channels on login if not already joined.
+## Installation
+1. Download the latest version
+2. Extract to your `Interface/AddOns` folder
+3. Restart or Reload World of Warcraft if it's running.
 
-### Customization
-You can further customize your World of Warcraft experience by:
-- **Fonts**: Copy the "Fonts" folder into your main WoW directory to change the in-game fonts.
-- **Sounds**: Copy the "Sound" folder into your main WoW directory to replace bow and gun sounds.
+## Features
 
-These customizations are optional and work independently from the addon's core functionality.
+### Automation
+- **Fast Looting**: Automatically loots items when the loot window opens
+- **Dialog Management**: Auto-confirms common dialog prompts (loot rolls, item binds, etc.)
+- **Vendor Assistance**: Automatically sells gray items and repairs equipment when visiting merchants
+
+### Optimization
+- **Graphics Settings**: Optimizes camera distance, disables unnecessary visual effects
+- **Sound Filtering**: Mutes distracting sounds including:
+  - Mechastrider loop sound
+  - Bow/gun loading and pullback sounds
+  - Pet screech sounds
+
+## Customization
+Enhance your experience with these optional customizations:
+
+- **Custom Fonts**: Copy the "Fonts" folder to your main WoW directory
+- **Custom Sounds**: Copy the "Sound" folder to your main WoW directory to replace bow/gun sounds
+
+These modifications work independently from the addon's core functionality.
