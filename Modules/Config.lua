@@ -9,6 +9,7 @@ local function applyGraphicsConfiguration()
     SetCVar("ffxNether", 0)
     SetCVar("farclip", 0)
     SetCVar("WeatherDensity", 0)
+    SetCVar("cursorSizePreferred", 0)
 end
 
 
