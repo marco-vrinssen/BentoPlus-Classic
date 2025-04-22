@@ -1,17 +1,13 @@
 -- APPLY GRAPHICS CONFIGURATION
 
 local function applyGraphicsConfiguration()
-    SetCVar("cameraDistanceMaxZoomFactor", 2.8)
+    SetCVar("cameraDistanceMaxZoomFactor", 2.4)
     SetCVar("HardwareCursor", 1)
     SetCVar("WorldTextScale", 1.25)
     SetCVar("ffxGlow", 0)
     SetCVar("ffxDeath", 0)
     SetCVar("ffxNether", 0)
-    SetCVar("farclip", 0)
-    SetCVar("WeatherDensity", 0)
-    SetCVar("cursorSizePreferred", 0)
 end
-
 
 -- APPLY SOUND CONFIGURATION
 
@@ -32,7 +28,6 @@ local function applySoundConfiguration()
         MuteSoundFile(soundId)
     end
 end
-
 
 -- INITIALIZE CONFIGEVENTS FRAME AND REGISTER EVENT
 
