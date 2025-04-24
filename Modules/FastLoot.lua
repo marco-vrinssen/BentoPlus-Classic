@@ -1,9 +1,15 @@
 -- AUTO LOOT ITEMS WHEN LOOT WINDOW OPENS
 
+local lastLootTime = 0
+local LOOT_DELAY = 0.05
+
 local function autoLooting()
     if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
-        for i = GetNumLootItems(), 1, -1 do
-            LootSlot(i)
+        if (GetTime() - lastLootTime) >= LOOT_DELAY then
+            for i = GetNumLootItems(), 1, -1 do
+                LootSlot(i)
+            end
+            lastLootTime = GetTime()
         end
     end
 end
@@ -11,29 +17,3 @@ end
 local autoLootEvents = CreateFrame("Frame")
 autoLootEvents:RegisterEvent("LOOT_READY")
 autoLootEvents:SetScript("OnEvent", autoLooting)
-
-
-
-
--- -- DELAYED LOOTING TO PREVENT DISCONNECTS
-
--- local function delayedLoot(slotIndex)
---     if slotIndex < 1 then return end
---     LootSlot(slotIndex)
---     C_Timer.After(0.05, function()
---         delayedLoot(slotIndex - 1)
---     end)
--- end
-
--- local function autoLooting()
---     if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
---         local totalLootSlots = GetNumLootItems()
---         if totalLootSlots > 0 then
---             delayedLoot(totalLootSlots)
---         end
---     end
--- end
-
--- local autoLootEvents = CreateFrame("Frame")
--- autoLootEvents:RegisterEvent("LOOT_READY")
--- autoLootEvents:SetScript("OnEvent", autoLooting)
